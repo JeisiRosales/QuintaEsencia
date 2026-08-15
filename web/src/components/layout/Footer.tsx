@@ -1,53 +1,8 @@
 import { Link } from '@tanstack/react-router'
-import logoQuintaEsencia from "../../assets/logos/logo_quinta_esencia_sin_fondo.webp"
+import logoQuintaEsencia from "@/assets/logos/logo_quinta_esencia_sin_fondo.webp"
+import { SOCIAL_LINKS } from '@/utils/constants'
 
-// Icono SVG personalizado de Instagram
-function InstagramIcon({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-        >
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-        </svg>
-    )
-}
-
-// Icono SVG personalizado de TikTok
-function TikTokIcon({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-        >
-            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.22V8.2a6.34 6.34 0 0 0-3.5 1.01 6.34 6.34 0 1 0 9.84 5.29V9.11a8.16 8.16 0 0 0 4.77 1.52V7.18a4.85 4.85 0 0 1-1-0.49z" />
-        </svg>
-    )
-}
-
-// Constante para Redes Sociales
-const SOCIAL_LINKS = [
-    {
-        name: 'Instagram',
-        href: 'https://instagram.com',
-        icon: InstagramIcon,
-    },
-    {
-        name: 'TikTok',
-        href: 'https://tiktok.com',
-        icon: TikTokIcon,
-    },
-]
-
-// 2. Constante para las Secciones y Enlaces del Footer
+// Interfaces
 interface FooterLink {
     label: string
     to?: string
@@ -96,72 +51,105 @@ const FOOTER_SECTIONS: FooterSection[] = [
 
 export function Footer() {
     return (
-        <footer className="bg-[var(--color-primary-light-2)] pt-16 pb-8 mt-auto border-t border-[var(--color-primary-light-3)]">
-            <div className="max-w-6xl mx-auto px-6 flex flex-col items-center text-center">
+        <footer className="bg-light-2 pt-16 pb-8 mt-auto border-t border-light-3">
+            <div className="max-w-7xl mx-auto px-6">
 
-                {/* Logo + Iconos Sociales */}
-                <div className="mb-12 flex flex-col items-center gap-4">
-                    <img
-                        src={logoQuintaEsencia}
-                        alt="Logo Quinta Esencia"
-                        className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
-                    />
+                {/* 
+                    CONTENEDOR PRINCIPAL: Flexbox 
+                    Móvil: Columna, todo centrado.
+                    Desktop (md): Fila, justificado a los extremos. 
+                */}
+                <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-16 md:gap-12">
 
-                    {/* Redes Sociales */}
-                    <div className="flex items-center gap-5 text-[var(--color-primary-dark-1)] mt-2">
-                        {SOCIAL_LINKS.map((social) => {
-                            const IconComponent = social.icon
-                            return (
-                                <a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={social.name}
-                                    className="p-1 hover:text-[var(--color-primary-brand-2)] transition-colors duration-200"
-                                >
-                                    <IconComponent className="w-5 h-5 stroke-[1.5]" />
-                                </a>
-                            )
-                        })}
-                    </div>
-                </div>
+                    {/* =========================================
+                        LADO IZQUIERDO (Desktop) / ARRIBA (Móvil)
+                        LOGO Y REDES SOCIALES
+                        ========================================= */}
+                    {/* CAMBIO: Se cambió md:items-end por md:items-center para centrar el logo y las redes 
+                        dentro de esta columna tanto en móvil como en escritorio. */}
+                    <div className="flex flex-col items-center md:items-center md:order-1 w-full md:w-1/4">
+                        <a
+                            href="/"
+                            aria-label="Ir al inicio - Quinta Esencia"
+                            className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded-sm mb-6"
+                        >
+                            <img
+                                src={logoQuintaEsencia}
+                                alt="Logo Quinta Esencia"
+                                className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                            />
+                        </a>
 
-                {/* Renderizado Dinámico de Secciones */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 w-full max-w-4xl">
-                    {FOOTER_SECTIONS.map((section) => (
-                        <div key={section.title} className="space-y-4">
-                            <h3 className="text-[var(--text-title-5)] text-[var(--color-primary-dark-1)] font-semibold flex flex-col items-center">
-                                {section.title}
-                                <span className="block w-8 h-[2px] bg-[var(--color-primary-brand-1)] mt-2 rounded-full"></span>
-                            </h3>
-
-                            <ul className="space-y-2 text-[var(--text-body-m)] text-[var(--color-primary-dark-2)]">
-                                {section.links.map((link) => (
-                                    <li key={link.label}>
-                                        {link.to ? (
-                                            <Link
-                                                to={link.to}
-                                                className="hover:text-[var(--color-primary-brand-2)] transition-colors"
+                        <nav aria-label="Redes Sociales">
+                            {/* Los íconos ya tienen flex y gap-4, se mantendrán centrados debajo del logo */}
+                            <ul className="flex items-center gap-4 text-dark-1">
+                                {SOCIAL_LINKS.map((social) => {
+                                    const IconComponent = social.icon;
+                                    return (
+                                        <li key={social.name}>
+                                            <a
+                                                href={social.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`Visitar nuestro ${social.name}`}
+                                                className="group relative flex items-center justify-center p-2.5 rounded-full text-dark-1 hover:text-secondary hover:bg-secondary/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                                             >
-                                                {link.label}
-                                            </Link>
-                                        ) : (
-                                            <span className="hover:text-[var(--color-primary-brand-2)] transition-colors cursor-pointer">
-                                                {link.label}
-                                            </span>
-                                        )}
-                                    </li>
-                                ))}
+                                                <IconComponent className="w-5 h-5 stroke-[1.5] transition-transform duration-300 group-hover:scale-110" />
+                                            </a>
+                                        </li>
+                                    );
+                                })}
                             </ul>
-                        </div>
-                    ))}
+                        </nav>
+                    </div>
+
+                    {/* =========================================
+                        LADO DERECHO (Desktop) / ABAJO (Móvil)
+                        LINKS DE NAVEGACIÓN
+                        ========================================= */}
+                    {/* md:order-1: Lo mantiene al principio (izquierda) en pantallas grandes.
+                        md:text-left: Alinea el texto a la izquierda. */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 w-full md:w-3/4 md:order-2 text-center md:text-center">
+                        {FOOTER_SECTIONS.map((section) => (
+                            <div key={section.title} className="space-y-5">
+                                {/* md:items-start alinea el título y la línea separadora a la izquierda en Desktop */}
+                                <h3 className="text-title-5 text-dark-1 font-semibold flex flex-col items-center md:items-center">
+                                    {section.title}
+                                    {/* mx-auto centra en móvil, md:mx-0 lo resetea en escritorio */}
+                                    <span className="block w-8 h-[2px] bg-primary mt-2 rounded-full mx-auto md:mx-0"></span>
+                                </h3>
+
+                                <ul className="space-y-3 text-body-m text-dark-1">
+                                    {section.links.map((link) => (
+                                        <li key={link.label}>
+                                            {link.to ? (
+                                                <Link
+                                                    to={link.to}
+                                                    className="hover:text-secondary transition-colors"
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            ) : (
+                                                <span className="hover:text-secondary transition-colors cursor-pointer">
+                                                    {link.label}
+                                                </span>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+
                 </div>
 
-                {/* Copyright */}
-                <div className="mt-16 text-[var(--text-body-s)] text-[var(--color-primary-dark-3)]">
-                    © {new Date().getFullYear()} Quinta Esencia. Todos los derechos reservados.
+                {/* =========================================
+                    COPYRIGHT (Ocupa todo el ancho abajo)
+                    ========================================= */}
+                <div className="mt-16 pt-8 border-t border-dark-1/10 flex flex-col items-center text-center text-body-s text-dark-3 w-full">
+                    <p>© {new Date().getFullYear()} Quinta Esencia. Todos los derechos reservados.</p>
                 </div>
+
             </div>
         </footer>
     )
