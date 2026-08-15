@@ -1,29 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Tipografía */
-  --font-sans: 'Poppins', sans-serif;
-  --font-serif: 'Poppins', sans-serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-script: 'Bonheur Royale', cursive;
 
   /* Paleta Primaria - Colores Marca */
-  --color-primary-brand-1: #FFDA8E;
-  --color-primary-brand-2: #FFAD04;
+  --color-primary: #FFDA8E;
+  --color-secondary: #FFAD04;
 
   /* Paleta Primaria - Tonos Claros */
-  --color-primary-light-1: #FEFAF3;
-  --color-primary-light-2: #FDF2E2;
-  --color-primary-light-3: #F3E1C5;
+  --color-light-1: #FEFAF3;
+  --color-light-2: #FDF2E2;
+  --color-light-3: #F3E1C5;
 
   /* Paleta Primaria - Tonos Oscuros */
-  --color-primary-dark-1: #362D1B;
-  --color-primary-dark-2: #534831;
-  --color-primary-dark-3: #6C624D;
+  --color-dark-1: #362D1B;
+  --color-dark-2: #534831;
+  --color-dark-3: #6C624D;
 
   /* Alias de compatibilidad para tus componentes */
-  --color-brand-gold: #FFAD04;
-  --color-brand-bg: #FEFAF3;
-  --color-brand-dark: #362D1B;
+  --color-gold: #FFAD04;
+  --color-bg: #FEFAF3;
+  --color-dark: #362D1B;
 
   /* Escala Tipográfica Fluida (Design System) */
   --text-title-1: clamp(2.625rem, 2.2993rem + 1.4474vw, 3.3125rem);
@@ -50,8 +51,8 @@
   }
 
   body {
-    background-color: var(--color-primary-light-1);
-    color: var(--color-primary-dark-2);
+    background-color: var(--color-light-1);
+    color: var(--color-dark-2);
     font-family: var(--font-family-body);
     font-weight: 400;
     margin: 0;
@@ -65,21 +66,25 @@
   h4,
   h5,
   h6 {
-    color: var(--color-primary-dark-1);
+    color: var(--color-dark-1);
     font-family: var(--font-family-heading);
     font-weight: 600;
   }
 
   /* Estilos por defecto para botones primarios */
   button.btn-primary {
-    background-color: var(--color-primary-brand-1);
-    color: var(--color-primary-dark-1);
+    background-color: var(--color-primary);
+    color: var(--color-dark-1);
     font-weight: 500;
     border-radius: var(--radius-button);
     transition: all 0.2s ease-in-out;
   }
 
   button.btn-primary:hover {
-    background-color: var(--color-primary-brand-2);
+    background-color: var(--color-secondary);
+  }
+
+  .text-script {
+    font-family: var(--font-script);
   }
 }
