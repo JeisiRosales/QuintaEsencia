@@ -28,6 +28,7 @@ export interface Product {
     ritualSteps?: string[]
     isHandmade: boolean
     isOrganic: boolean
+    isFeatured?: boolean
 }
 
 // Estructura de un Mensaje del Alma

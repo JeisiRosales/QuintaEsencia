@@ -1,5 +1,5 @@
-import { client } from '../lib/sanity'
-import type { Product } from '../types/sanity'
+import { client } from '@/lib/sanity'
+import type { Product } from '@/types/sanity'
 
 const PRODUCTS_QUERY = `*[_type == "product"] | order(_createdAt desc) {
   _id,
@@ -17,7 +17,8 @@ const PRODUCTS_QUERY = `*[_type == "product"] | order(_createdAt desc) {
   ingredients,
   ritualSteps,
   isHandmade,
-  isOrganic
+  isOrganic,
+  isFeatured
 }`
 
 export async function getProducts(): Promise<Product[]> {

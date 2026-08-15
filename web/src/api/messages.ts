@@ -1,5 +1,5 @@
-import { client } from '../lib/sanity'
-import type { HomeMessage } from '../types/sanity'
+import { client } from '@/lib/sanity'
+import type { HomeMessage } from '@/types/sanity'
 
 // Consulta GROQ explícita para los mensajes del alma
 const MESSAGES_QUERY = `*[_type == "homeMessage"] | order(_createdAt desc) {

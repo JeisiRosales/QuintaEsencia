@@ -144,6 +144,13 @@ export default defineType({
             type: 'boolean',
             initialValue: true,
         }),
+        defineField({
+            name: 'isFeatured',
+            title: 'Destacar en la página de inicio',
+            type: 'boolean',
+            description: 'Activa esto para que aparezca en la sección principal (Máximo sugerido: 4 productos)',
+            initialValue: false,
+        })
     ],
     preview: {
         select: {
