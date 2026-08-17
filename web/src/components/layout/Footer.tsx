@@ -6,6 +6,7 @@ import { SOCIAL_LINKS } from '@/utils/constants'
 interface FooterLink {
     label: string
     to?: string
+    hash?: string
 }
 
 interface FooterSection {
@@ -29,14 +30,13 @@ const FOOTER_SECTIONS: FooterSection[] = [
             { label: '¿Cómo comprar?', to: '/ayuda' },
             { label: 'Método de pago', to: '/ayuda' },
             { label: 'Preguntas Frecuentes', to: '/ayuda' },
-            { label: 'Contacto', to: '/ayuda' },
         ],
     },
     {
         title: 'Envíos y Entregas',
         links: [
-            { label: 'Entregas Personales' },
-            { label: 'Envíos Nacionales' },
+            { label: 'Entregas Personales', to: '/ayuda' },
+            { label: 'Envíos Nacionales', to: '/ayuda' },
         ],
     },
     {
@@ -59,7 +59,7 @@ export function Footer() {
                     Móvil: Columna, todo centrado.
                     Desktop (md): Fila, justificado a los extremos. 
                 */}
-                <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-16 md:gap-12">
+                <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-12">
 
                     {/* =========================================
                         LADO IZQUIERDO (Desktop) / ARRIBA (Móvil)
@@ -80,8 +80,8 @@ export function Footer() {
                             />
                         </a>
 
-                        <nav aria-label="Redes Sociales">
-                            {/* Los íconos ya tienen flex y gap-4, se mantendrán centrados debajo del logo */}
+                        <p className="text-body-s text-center mb-4">Acompáñanos en el camino</p>
+                        <nav aria-label="Redes Sociales" className="flex justify-center">
                             <ul className="flex items-center gap-4 text-dark-1">
                                 {SOCIAL_LINKS.map((social) => {
                                     const IconComponent = social.icon;
@@ -92,9 +92,9 @@ export function Footer() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 aria-label={`Visitar nuestro ${social.name}`}
-                                                className="group relative flex items-center justify-center p-2.5 rounded-full text-dark-1 hover:text-secondary hover:bg-secondary/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                                                className="group relative flex items-center justify-center rounded-full text-dark-1 hover:text-secondary hover:bg-secondary/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                                             >
-                                                <IconComponent className="w-5 h-5 stroke-[1.5] transition-transform duration-300 group-hover:scale-110" />
+                                                <IconComponent className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110`} />
                                             </a>
                                         </li>
                                     );
@@ -113,10 +113,10 @@ export function Footer() {
                         {FOOTER_SECTIONS.map((section) => (
                             <div key={section.title} className="space-y-5">
                                 {/* md:items-start alinea el título y la línea separadora a la izquierda en Desktop */}
-                                <h3 className="text-title-5 text-dark-1 font-semibold flex flex-col items-center md:items-center">
+                                <h3 className="text-body-l text-dark-1 font-semibold flex flex-col items-center md:items-center">
                                     {section.title}
                                     {/* mx-auto centra en móvil, md:mx-0 lo resetea en escritorio */}
-                                    <span className="block w-8 h-[2px] bg-primary mt-2 rounded-full mx-auto md:mx-0"></span>
+                                    <span className="block w-10 h-[3px] bg-primary/80 mt-1 rounded-full mx-auto md:mx-0"></span>
                                 </h3>
 
                                 <ul className="space-y-3 text-body-m text-dark-1">
