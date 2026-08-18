@@ -263,7 +263,7 @@ export function Navbar() {
 
                             {/* PANEL DESPLEGABLE DE SUGERENCIAS */}
                             <div
-                                className={`absolute top-[calc(100%+1rem)] right-0 bg-light-1/95 shadow-md shadow-gray-150 rounded-md border text-body-s border-dark-3/20 p-4 w-[320px] md:w-[400px] max-h-[70vh] overflow-y-auto transition-all duration-300 z-50 ${isSearchOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                                className={`absolute top-[calc(100%+1rem)] -right-5.5 bg-light-1/95 shadow-md shadow-gray-150 rounded-md border text-body-s border-dark-3/20 p-4 w-[320px] md:w-[400px] max-h-[70vh] overflow-y-auto transition-all duration-300 z-50 ${isSearchOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
                                     }`}
                             >
                                 {/* ESTADO CERO: El input está vacío */}
