@@ -19,7 +19,7 @@ export default defineType({
             description: 'Selecciona y ordena los productos que aparecerán en la portada de la botica (Máximo 4).',
             type: 'array',
             of: [{ type: 'reference', to: [{ type: 'product' }] }],
-            validation: (Rule) => Rule.max(4).unique(),
+            validation: (Rule) => Rule.unique(),
         }),
     ],
     preview: {
