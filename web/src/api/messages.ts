@@ -1,14 +1,8 @@
 import { client } from '@/lib/sanity'
 import type { HomeMessage } from '@/types/homeMessage'
+import { HOME_MESSAGES_QUERY } from './queries/messages'
 
-const HOME_MESSAGES_QUERY = `
-  *[_type == "homeMessage"] | order(_createdAt desc) {
-    _id,
-    message,
-    signature
-  }
-`
-
+// Obtiene los mensajes cortos o anuncios para mostrar en la página de inicio
 export async function getHomeMessages(): Promise<HomeMessage[]> {
     return await client.fetch(HOME_MESSAGES_QUERY)
 }
