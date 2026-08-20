@@ -29,6 +29,7 @@ export const HOME_FEATURED_PRODUCTS_QUERY = `
     name,
     slug,
     tagline,
+    connectionDecree,
     mainImage,
     intentions[]->{ _id, title, slug },
     ingredients[]->{ _id, name, benefit }

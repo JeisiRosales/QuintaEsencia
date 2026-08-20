@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Tipografía */
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-script: 'Bonheur Royale', cursive;
+  --font-serif: 'Great Vibes', cursive;
 
   /* Paleta Primaria - Colores Marca */
   --color-primary: #FFDA8E;
@@ -23,17 +23,17 @@
 
   /* Alias de compatibilidad para tus componentes */
   --color-gold: #B58B58;
-  --color-bg: #FEFAF3;
   --color-dark: #362D1B;
+  --color-olive: #787B54;
 
   /* Escala Tipográfica Fluida (Design System) */
-  --text-title-1: clamp(2.625rem, 2.2993rem + 1.4474vw, 3.3125rem);
+  --text-title-1: clamp(3.625rem, 3.1855rem + 1.9737vw, 4.3125rem);
   --text-title-2: clamp(2.1875rem, 1.9507rem + 1.0526vw, 2.6875rem);
   --text-title-3: clamp(1.8125rem, 1.6645rem + 0.6579vw, 2.125rem);
   --text-title-4: clamp(1.5rem, 1.4112rem + 0.3947vw, 1.6875rem);
   --text-title-5: clamp(1.25rem, 1.1908rem + 0.2632vw, 1.375rem);
   --text-title-6: clamp(1.0625rem, 1.0329rem + 0.1316vw, 1.125rem);
-  --text-sub-title: 0.6rem;
+  --text-sub-title: 0.65rem;
 
   --text-body-l: 1rem;
   --text-body-m: 0.875rem;
@@ -57,6 +57,7 @@
     font-weight: 400;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   /* Títulos e intensidades */
@@ -68,20 +69,6 @@
   h6 {
     color: var(--color-dark-1);
     font-family: var(--font-family-heading);
-    font-weight: 600;
-  }
-
-  /* Estilos por defecto para botones primarios */
-  button.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-dark-1);
-    font-weight: 500;
-    border-radius: var(--radius-button);
-    transition: all 0.2s ease-in-out;
-  }
-
-  button.btn-primary:hover {
-    background-color: var(--color-secondary);
   }
 
   .text-script {
@@ -97,4 +84,70 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* ==========================================
+   ANIMACIONES PERSONALIZADAS (MARQUEE & EFECTOS)
+   ========================================== */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 200s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 200s linear infinite reverse;
+}
+
+.group:hover .animate-marquee,
+.group:active .animate-marquee,
+.group:hover .animate-marquee-reverse,
+.group:active .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+
+/* Animación de Flotación Orgánica (Nuevos PNGs) */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes fadeInGhost {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInGhost 650ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }

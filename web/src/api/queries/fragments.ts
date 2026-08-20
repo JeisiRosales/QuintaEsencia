@@ -9,6 +9,7 @@ export const PRODUCT_FRAGMENT = `
   mainImage,
   detailImages,
   description,
+  connectionDecree,
   ritualSteps,
   isHandmade,
   isOrganic,

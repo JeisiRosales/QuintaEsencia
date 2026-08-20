@@ -74,6 +74,12 @@ export default defineType({
             rows: 5,
         }),
         defineField({
+            name: 'connectionDecree',
+            title: 'Decreto de Conexión',
+            type: 'text',
+            rows: 3,
+        }),
+        defineField({
             name: 'ingredients',
             title: 'Ingredientes',
             type: 'array',
