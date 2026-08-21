@@ -15,6 +15,7 @@ export interface Product {
     mainImage: SanityImage;
     detailImages?: SanityImage[];
     description?: string;
+    connectionDecree?: string;
     ingredients?: Ingredient[];
     ritualSteps?: string[];
     isHandmade: boolean;

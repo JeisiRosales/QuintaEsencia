@@ -31,7 +31,7 @@ export const ZERO_STATE_SEARCH_QUERY = `
 // Busca en tiempo real productos, artículos y taxonomías (categorías/intenciones) que coincidan con el texto introducido
 export const LIVE_SEARCH_QUERY = `
 {
-  "products": *[_type == "product" && name match $searchQuery] {
+  "products": *[_type == "product" && (name match $searchQuery || slug.current match $searchQuery || intentions[]->title match $searchQuery || intentions[]->slug.current match $searchQuery)] {
     _id,
     name,
     slug,
@@ -39,7 +39,7 @@ export const LIVE_SEARCH_QUERY = `
     mainImage
   }[0...4],
 
-  "articles": *[_type == "article" && title match $searchQuery] {
+  "articles": *[_type == "article" && (title match $searchQuery || slug.current match $searchQuery || intentions[]->title match $searchQuery || intentions[]->slug.current match $searchQuery)] {
     _id,
     title,
     slug,
@@ -48,7 +48,7 @@ export const LIVE_SEARCH_QUERY = `
     intentions[]->{ _id, title, slug }
   }[0...4],
 
-  "taxonomies": *[_type in ["category", "intention"] && title match $searchQuery] {
+  "taxonomies": *[_type in ["category", "intention"] && (title match $searchQuery || slug.current match $searchQuery)] {
     _id,
     title,
     slug,

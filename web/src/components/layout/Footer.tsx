@@ -51,22 +51,13 @@ const FOOTER_SECTIONS: FooterSection[] = [
 
 export function Footer() {
     return (
-        <footer className="bg-light-2 pt-16 pb-8 mt-auto border-t border-light-3">
+        <footer className="bg-dark-1 pt-16 pb-8 mt-auto">
             <div className="max-w-7xl mx-auto px-6">
 
-                {/* 
-                    CONTENEDOR PRINCIPAL: Flexbox 
-                    Móvil: Columna, todo centrado.
-                    Desktop (md): Fila, justificado a los extremos. 
-                */}
+                {/* CONTENEDOR PRINCIPAL */}
                 <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-12">
 
-                    {/* =========================================
-                        LADO IZQUIERDO (Desktop) / ARRIBA (Móvil)
-                        LOGO Y REDES SOCIALES
-                        ========================================= */}
-                    {/* CAMBIO: Se cambió md:items-end por md:items-center para centrar el logo y las redes 
-                        dentro de esta columna tanto en móvil como en escritorio. */}
+                    {/* LADO IZQUIERDO (Desktop) / ARRIBA (Móvil) - LOGO Y REDES SOCIALES */}
                     <div className="flex flex-col items-center md:items-center md:order-1 w-full md:w-1/4">
                         <a
                             href="/"
@@ -76,11 +67,11 @@ export function Footer() {
                             <img
                                 src={logoQuintaEsencia}
                                 alt="Logo Quinta Esencia"
-                                className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                                className="h-8 md:h-12 md:w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                             />
                         </a>
 
-                        <p className="text-body-s text-center mb-4">Acompáñanos en el camino</p>
+                        <p className="text-body-s text-center text-light-1 mb-4">Acompáñanos en el camino</p>
                         <nav aria-label="Redes Sociales" className="flex justify-center">
                             <ul className="flex items-center gap-4 text-dark-1">
                                 {SOCIAL_LINKS.map((social) => {
@@ -92,7 +83,7 @@ export function Footer() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 aria-label={`Visitar nuestro ${social.name}`}
-                                                className="group relative flex items-center justify-center rounded-full text-dark-1 hover:text-secondary hover:bg-secondary/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                                                className="group relative flex items-center justify-center rounded-full text-light-1 hover:text-gold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
                                             >
                                                 <IconComponent className={`w-6 h-6 transition-transform duration-300 group-hover:scale-110`} />
                                             </a>
@@ -103,34 +94,27 @@ export function Footer() {
                         </nav>
                     </div>
 
-                    {/* =========================================
-                        LADO DERECHO (Desktop) / ABAJO (Móvil)
-                        LINKS DE NAVEGACIÓN
-                        ========================================= */}
-                    {/* md:order-1: Lo mantiene al principio (izquierda) en pantallas grandes.
-                        md:text-left: Alinea el texto a la izquierda. */}
+                    {/* LADO DERECHO (Desktop) / ABAJO (Móvil) */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 w-full md:w-3/4 md:order-2 text-center md:text-center">
                         {FOOTER_SECTIONS.map((section) => (
                             <div key={section.title} className="space-y-5">
-                                {/* md:items-start alinea el título y la línea separadora a la izquierda en Desktop */}
-                                <h3 className="text-body-l text-dark-1 font-semibold flex flex-col items-center md:items-center">
+                                <h3 className="text-body-l text-light-1 flex flex-col items-center md:items-center">
                                     {section.title}
-                                    {/* mx-auto centra en móvil, md:mx-0 lo resetea en escritorio */}
-                                    <span className="block w-10 h-[3px] bg-primary/80 mt-1 rounded-full mx-auto md:mx-0"></span>
+                                    <span className="block w-10 h-[3px] bg-gold mt-1 rounded-full mx-auto md:mx-0"></span>
                                 </h3>
 
-                                <ul className="space-y-3 text-body-m text-dark-1">
+                                <ul className="space-y-3 text-body-m text-light-1/65">
                                     {section.links.map((link) => (
                                         <li key={link.label}>
                                             {link.to ? (
                                                 <Link
                                                     to={link.to}
-                                                    className="hover:text-secondary transition-colors"
+                                                    className="hover:text-light-1 transition-colors"
                                                 >
                                                     {link.label}
                                                 </Link>
                                             ) : (
-                                                <span className="hover:text-secondary transition-colors cursor-pointer">
+                                                <span className="hover:text-light-1 transition-colors cursor-pointer">
                                                     {link.label}
                                                 </span>
                                             )}

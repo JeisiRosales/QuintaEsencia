@@ -1,3 +1,4 @@
+// Consulta para todos los productos con su categoria, intenciones e ingredientes
 export const PRODUCT_FRAGMENT = `
   _id,
   name,

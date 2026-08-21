@@ -1,6 +1,10 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
+/**
+ * Cliente de Sanity para obtener datos de la API
+ */
+
 export const client = createClient({
     projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
     dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
@@ -12,7 +16,10 @@ const builder = imageUrlBuilder(client)
 
 /**
  * Transforma referencias de imágenes de Sanity en URLs optimizadas.
+ * @param source - Referencia de imagen de Sanity
+ * @returns string - URL de la imagen optimizada
  */
+
 export function urlFor(source: Parameters<typeof builder.image>[0]) {
     return builder.image(source)
 }

@@ -108,6 +108,10 @@
   animation-play-state: paused;
 }
 
+.animate-marquee-continuous {
+  animation: marquee 200s linear infinite;
+}
+
 .animate-marquee-reverse {
   animation: marquee 200s linear infinite reverse;
 }
@@ -143,7 +147,7 @@
   }
 
   100% {
-    opacity: 0.1;
+    opacity: 0.8;
     transform: scale(1);
   }
 }

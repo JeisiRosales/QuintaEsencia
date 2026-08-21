@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Navbar } from './Navbar'
+import { Navbar } from './nav'
 import { Footer } from './Footer'
 import { ToastProvider } from '../ui/ToastProvider'
 
@@ -9,7 +9,7 @@ interface MainLayoutProps {
 
 export function MainLayout({ children }: MainLayoutProps) {
     return (
-        <div className="min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-dark-1">
+        <div className="min-h-screen flex flex-col selection:bg-primary selection:text-dark-1">
             <ToastProvider />
             <Navbar />
 
