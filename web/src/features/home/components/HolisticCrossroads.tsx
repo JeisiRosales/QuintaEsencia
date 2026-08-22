@@ -1,26 +1,24 @@
 import { Link } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { useGlobalAnimations } from '@/hooks/useGlobalAnimations'
 
 function CardCrossroads({
     category,
     title,
     description,
     href,
-    delay = 0,
 }: {
     category: string
     title: string
     description: string
     href: string
-    delay?: number
 }) {
+    const { fadeUp } = useGlobalAnimations()
+
     return (
         <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 2, delay, ease: [0.25, 0.1, 0.25, 1] }}
+            variants={fadeUp}
             className="h-full"
         >
             <Link
@@ -49,6 +47,8 @@ function CardCrossroads({
 }
 
 export function HolisticCrossroads() {
+    const { staggerContainer } = useGlobalAnimations()
+
     return (
         <section className="py-16 md:py-24 px-4 md:px-10">
             <div className="max-w-5xl mx-auto space-y-12">
@@ -67,13 +67,18 @@ export function HolisticCrossroads() {
                 </div>
 
                 {/* Dos Portales Simétricos */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div 
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                >
                     <CardCrossroads
                         category="Ritual Físico"
                         title="Sanar a través del cuerpo"
                         description="Descubre mezclas de sales y plantas puras diseñadas para elevar tus rituales de baño."
                         href="/coleccion"
-                        delay={0.1}
                     />
 
                     <CardCrossroads
@@ -81,9 +86,8 @@ export function HolisticCrossroads() {
                         title="Nutrir a través de la mente"
                         description="Lecturas, guías y conocimientos sobre herbolaria holística y bienestar consciente."
                         href="/blog"
-                        delay={0.3}
                     />
-                </div>
+                </motion.div>
             </div>
         </section>
     )

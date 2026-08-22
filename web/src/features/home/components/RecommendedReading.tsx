@@ -2,9 +2,11 @@ import { Link } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { urlFor } from '@/lib/sanity'
 import { useHomeData } from '../hooks/useHomeData'
+import { useGlobalAnimations } from '@/hooks/useGlobalAnimations'
 
 export function RecommendedReading() {
     const { latestArticles, isLoading } = useHomeData()
+    const { staggerContainer, fadeUp } = useGlobalAnimations()
 
     if (isLoading || !latestArticles || latestArticles.length === 0) {
         return null
@@ -14,10 +16,10 @@ export function RecommendedReading() {
         <section className="w-full py-16 px-4 md:px-8 -mt-16">
             <div className="max-w-5xl mx-auto">
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial="hidden"
+                    whileInView="show"
                     viewport={{ once: true, margin: '-50px' }}
-                    transition={{ duration: 1.5, delay: 0, ease: [0.25, 0.1, 0.25, 1] }}
+                    variants={fadeUp}
                     className="text-left mb-10"
                 >
                     <p className="text-title-4 font-bold text-dark-1">
@@ -25,7 +27,13 @@ export function RecommendedReading() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <motion.div 
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                >
                     {latestArticles.map((article, index) => {
                         const imageUrl = article.mainImage ? urlFor(article.mainImage).width(600).format('webp').url() : ''
                         // Use intention as category if available, otherwise default to "Artículo"
@@ -36,10 +44,7 @@ export function RecommendedReading() {
                         return (
                             <motion.div
                                 key={article._id}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: '-50px' }}
-                                transition={{ duration: 1.5, delay: 0.1 + index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+                                variants={fadeUp}
                             >
                                 <Link to="/blog/$slug" params={{ slug: article.slug.current }} className="group block cursor-pointer">
                                     <div className="flex flex-col h-full">
@@ -69,7 +74,7 @@ export function RecommendedReading() {
                             </motion.div>
                         )
                     })}
-                </div>
+                </motion.div>
             </div>
         </section>
     )
