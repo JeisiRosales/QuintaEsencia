@@ -1,15 +1,7 @@
 import herodesk from '@/assets/home/HeroBanner/header-desktop.webp'
 import hemobile from '@/assets/home/HeroBanner/header-mobile.webp'
-import { HandHeart, Leaf, Home } from 'lucide-react'
-import { HandPrayerIcon } from 'hugeicons-react'
 import { Button } from '@/components/ui/Button'
-
-const pilares = [
-    { icon: HandHeart, title: "Hecho a Mano", desc: "Elaborado sin prisa al baño maría" },
-    { icon: Leaf, title: "Botánica Sagrada", desc: "Plantas, cristales y minerales puros" },
-    { icon: HandPrayerIcon, title: "Alta Vibración", desc: "Decretos cargados de intención" },
-    { icon: Home, title: "Tu Santuario", desc: "Rituales para habitarte en paz" }
-]
+import { pilares } from '@/utils/constants'
 
 export function HeroBanner() {
     return (

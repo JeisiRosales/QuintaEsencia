@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AyudaRouteImport } from './routes/ayuda'
 import { Route as LegalRouteImport } from './routes/legal'
-import { Route as NosotrosRouteImport } from './routes/nosotros'
+import { Route as NuestraEsenciaRouteImport } from './routes/nuestra-esencia'
 import { Route as RitualRouteImport } from './routes/ritual'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
@@ -34,9 +34,9 @@ const LegalRoute = LegalRouteImport.update({
   path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NosotrosRoute = NosotrosRouteImport.update({
-  id: '/nosotros',
-  path: '/nosotros',
+const NuestraEsenciaRoute = NuestraEsenciaRouteImport.update({
+  id: '/nuestra-esencia',
+  path: '/nuestra-esencia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RitualRoute = RitualRouteImport.update({
@@ -69,7 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
   '/legal': typeof LegalRoute
-  '/nosotros': typeof NosotrosRoute
+  '/nuestra-esencia': typeof NuestraEsenciaRoute
   '/ritual': typeof RitualRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/coleccion/$slug': typeof ColeccionSlugRoute
@@ -80,7 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
   '/legal': typeof LegalRoute
-  '/nosotros': typeof NosotrosRoute
+  '/nuestra-esencia': typeof NuestraEsenciaRoute
   '/ritual': typeof RitualRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/coleccion/$slug': typeof ColeccionSlugRoute
@@ -92,7 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/ayuda': typeof AyudaRoute
   '/legal': typeof LegalRoute
-  '/nosotros': typeof NosotrosRoute
+  '/nuestra-esencia': typeof NuestraEsenciaRoute
   '/ritual': typeof RitualRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/coleccion/$slug': typeof ColeccionSlugRoute
@@ -105,7 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ayuda'
     | '/legal'
-    | '/nosotros'
+    | '/nuestra-esencia'
     | '/ritual'
     | '/blog/$slug'
     | '/coleccion/$slug'
@@ -116,7 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ayuda'
     | '/legal'
-    | '/nosotros'
+    | '/nuestra-esencia'
     | '/ritual'
     | '/blog/$slug'
     | '/coleccion/$slug'
@@ -127,7 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ayuda'
     | '/legal'
-    | '/nosotros'
+    | '/nuestra-esencia'
     | '/ritual'
     | '/blog/$slug'
     | '/coleccion/$slug'
@@ -139,7 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AyudaRoute: typeof AyudaRoute
   LegalRoute: typeof LegalRoute
-  NosotrosRoute: typeof NosotrosRoute
+  NuestraEsenciaRoute: typeof NuestraEsenciaRoute
   RitualRoute: typeof RitualRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ColeccionSlugRoute: typeof ColeccionSlugRoute
@@ -170,11 +170,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/nosotros': {
-      id: '/nosotros'
-      path: '/nosotros'
-      fullPath: '/nosotros'
-      preLoaderRoute: typeof NosotrosRouteImport
+    '/nuestra-esencia': {
+      id: '/nuestra-esencia'
+      path: '/nuestra-esencia'
+      fullPath: '/nuestra-esencia'
+      preLoaderRoute: typeof NuestraEsenciaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ritual': {
@@ -219,7 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AyudaRoute: AyudaRoute,
   LegalRoute: LegalRoute,
-  NosotrosRoute: NosotrosRoute,
+  NuestraEsenciaRoute: NuestraEsenciaRoute,
   RitualRoute: RitualRoute,
   BlogSlugRoute: BlogSlugRoute,
   ColeccionSlugRoute: ColeccionSlugRoute,

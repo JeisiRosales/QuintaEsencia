@@ -15,7 +15,7 @@ export function Navbar() {
     // Enlaces de navegación construidos con datos dinámicos del buscador
     const navItems: NavLink[] = [
         { name: 'Inicio', path: '/' },
-        { name: 'Nuestra Alma', path: '/nosotros' },
+        { name: 'Nuestra Alma', path: '/nuestra-esencia' },
         {
             name: 'La Colección',
             path: '/coleccion',

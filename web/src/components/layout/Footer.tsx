@@ -19,7 +19,7 @@ const FOOTER_SECTIONS: FooterSection[] = [
         title: 'Navegación',
         links: [
             { label: 'Inicio', to: '/' },
-            { label: 'Sobre Nosotros', to: '/nosotros' },
+            { label: 'Sobre Nosotros', to: '/nuestra-esencia' },
             { label: 'La colección', to: '/coleccion' },
             { label: 'El Ritual', to: '/ritual' },
         ],

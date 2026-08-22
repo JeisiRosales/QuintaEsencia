@@ -1,4 +1,5 @@
-import { WhatsappIcon, InstagramIcon, TiktokIcon } from 'hugeicons-react'
+import { WhatsappIcon, InstagramIcon, TiktokIcon, HandPrayerIcon } from 'hugeicons-react'
+import { HandHeart, Leaf, Home } from 'lucide-react';
 
 // Interface
 interface SocialLink {
@@ -24,3 +25,30 @@ export const SOCIAL_LINKS: SocialLink[] = [
         icon: WhatsappIcon
     }
 ];
+
+export const pilares = [
+    {
+        icon: HandHeart,
+        title: "Hecho a Mano",
+        desc: "Elaborado sin prisa al baño maría",
+        text: "Sales sin refinar y aceites esenciales 100% puros, sin químicos.",
+    },
+    {
+        icon: Leaf,
+        title: "Botánica Sagrada",
+        desc: "Plantas, cristales y minerales puros",
+        text: "Mezclado a mano honrando ciclos lunares y energía botánica.",
+    },
+    {
+        icon: HandPrayerIcon,
+        title: "Alta Vibración",
+        desc: "Decretos cargados de intención",
+        text: "Decretos con afirmaciones y mantras que actúan en lo consciente e inconsciente."
+    },
+    {
+        icon: Home,
+        title: "Tu Santuario",
+        desc: "Rituales para habitarte en paz",
+        text: "Herramientas para crear tu santuario: sanación, conexión y renacimiento."
+    }
+]
