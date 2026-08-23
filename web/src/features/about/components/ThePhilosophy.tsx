@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
 import alchemyImg from '@/assets/about/alchemy.webp';
-import { pilares } from '@/utils/constants';
+import { PILLARS } from '@/utils/constants';
 
 export function ThePhilosophy() {
     const { staggerContainer, fadeUp } = useGlobalAnimations();
@@ -35,7 +35,7 @@ export function ThePhilosophy() {
                     </motion.h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-12 px-8">
-                        {pilares.map((pillar, index) => (
+                        {PILLARS.map((pillar, index) => (
                             <motion.div key={index} variants={fadeUp} className="flex flex-col items-center">
                                 <div className="w-12 h-12 rounded-full border border-gold flex items-center justify-center mb-6">
                                     <span className="text-gold text-lg">✦</span>

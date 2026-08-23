@@ -15,9 +15,9 @@ export function TheCreator() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="flex flex-col space-y-6 px-2 lg:px-0"
+                    className="flex flex-col space-y-2 lg:space-y-3 px-2 lg:px-0"
                 >
-                    <span className="text-gold tracking-widest uppercase text-body-s font-medium block">
+                    <span className="text-gold tracking-widest uppercase text-body-s block">
                         La Creadora
                     </span>
                     <h2 className="text-title-3 md:text-title-2 italic font-semibold text-dark-1 leading-tight">

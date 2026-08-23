@@ -8,6 +8,13 @@ interface SocialLink {
     icon: React.ComponentType<{ className?: string }>
 }
 
+interface Pillars {
+    icon: React.ComponentType<{ className?: string }>
+    title: string
+    desc: string
+    text: string
+}
+
 export const SOCIAL_LINKS: SocialLink[] = [
     {
         name: "Instagram",
@@ -26,7 +33,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     }
 ];
 
-export const pilares = [
+export const PILLARS: Pillars[] = [
     {
         icon: HandHeart,
         title: "Hecho a Mano",

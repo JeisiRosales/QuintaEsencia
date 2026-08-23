@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/Button'
-import aboutImage from '@/assets/home/AboutSection/aboutImage.webp'
+import aboutImage from '@/assets/home/aboutImage.webp'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations'
 import { motion } from 'framer-motion'
@@ -39,7 +39,7 @@ export function AboutSection() {
                         className="ml-[47%] lg:ml-0 flex flex-col space-y-4 lg:space-y-8 pb-8 pl-2 lg:pr-24"
                     >
                         <div className="space-y-2 lg:space-y-3">
-                            <span className="text-gold tracking-widest uppercase text-body-s block font-medium">
+                            <span className="text-gold tracking-widest uppercase text-body-s block">
                                 Nuestra Esencia
                             </span>
                             <h2 className="text-title-3 md:text-title-2 leading-tight italic font-semibold text-dark-1">

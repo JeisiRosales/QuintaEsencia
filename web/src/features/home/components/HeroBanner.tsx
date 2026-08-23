@@ -1,9 +1,13 @@
-import herodesk from '@/assets/home/HeroBanner/header-desktop.webp'
-import hemobile from '@/assets/home/HeroBanner/header-mobile.webp'
+import herodesk from '@/assets/home/header-desktop.webp'
+import hemobile from '@/assets/home/header-mobile.webp'
 import { Button } from '@/components/ui/Button'
-import { pilares } from '@/utils/constants'
+import { PILLARS } from '@/utils/constants'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export function HeroBanner() {
+    const isDesktop = useMediaQuery('(min-width: 768px)')
+    const heroBanner = isDesktop ? herodesk : hemobile
+
     return (
         <section className="w-full px-4 md:px-8 mt-20">
             {/* Contenedor principal con efecto de enmarcado redondeado */}
@@ -11,9 +15,9 @@ export function HeroBanner() {
 
                 {/* 1. FOTO DE FONDO */}
                 <picture className="absolute inset-0 w-full h-full">
-                    <source media="(min-width: 768px)" srcSet={herodesk} type="image/webp" />
+                    <source media="(min-width: 768px)" srcSet={heroBanner} type="image/webp" />
                     <img
-                        src={hemobile}
+                        src={heroBanner}
                         alt="Colección de productos Quinta Esencia"
                         className="w-full h-full object-cover block"
                         loading="eager"
@@ -37,7 +41,7 @@ export function HeroBanner() {
                             </h1>
                         </div>
 
-                        <p className="text-body-s md:text-body-m text-light-1 max-w-md">
+                        <p className="text-body-m md:text-body-l text-light-1 max-w-md">
                             Transforma tu energía, suelta el peso del día y sumérgete en tu propia paz.
                         </p>
 
@@ -53,9 +57,9 @@ export function HeroBanner() {
 
                 {/* 4. BANDA TRANSPARENTE DE PILARES (DESKTOP) */}
                 <div className="hidden md:flex absolute bottom-0 inset-x-0 w-full z-30 px-8 lg:px-16 py-4 bg-light-1/10 backdrop-blur-sm border-t border-white/10 justify-between items-center divide-x divide-white/15">
-                    {pilares.map((pilar, index) => (
+                    {PILLARS.map((pilar, index) => (
                         <div key={index} className="flex items-center space-x-4 px-4 w-1/4 first:pl-0">
-                            <pilar.icon strokeWidth={1.2} className="w-6 h-6 text-light-1 shrink-0" />
+                            <pilar.icon className="w-6 h-6 text-light-1 shrink-0" />
                             <div className="text-left">
                                 <p className="text-body-s text-light-1 uppercase tracking-wider">
                                     {pilar.title}
@@ -74,9 +78,9 @@ export function HeroBanner() {
                         className="flex w-max animate-marquee-continuous whitespace-nowrap items-center space-x-10 px-4"
                         style={{ animationDuration: '22s' }}
                     >
-                        {[...pilares, ...pilares].map((pilar, index) => (
+                        {[...PILLARS, ...PILLARS].map((pilar, index) => (
                             <div key={index} className="flex items-center space-x-4 px-4 w-1/4 first:pl-0">
-                                <pilar.icon strokeWidth={1.2} className="w-6 h-6 text-light-1 shrink-0" />
+                                <pilar.icon className="w-6 h-6 text-light-1 shrink-0" />
                                 <div className="text-left">
                                     <p className="text-body-s text-light-1 uppercase tracking-wider">
                                         {pilar.title}

@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import step1Image from "@/assets/home/StepsSection/step1Poster.webp";
-import step2Image from "@/assets/home/StepsSection/step2Poster.webp";
-import step3Image from "@/assets/home/StepsSection/step3Poster.webp";
+import step1Image from "@/assets/home/step1Poster.webp";
+import step2Image from "@/assets/home/step2Poster.webp";
+import step3Image from "@/assets/home/step3Poster.webp";
 
 const STEPS_DATA = [
     {
