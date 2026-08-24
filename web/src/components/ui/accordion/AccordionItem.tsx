@@ -1,15 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, ChevronDown } from 'lucide-react';
-import type { HelpItem } from './HelpData';
+import { ChevronDown } from 'lucide-react';
+import type { AccordionItemData } from './types';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
 
 interface Props {
-    item: HelpItem;
+    item: AccordionItemData;
     isOpen: boolean;
     onToggle: () => void;
 }
 
-export function HelpAccordionItem({ item, isOpen, onToggle }: Props) {
+export function AccordionItem({ item, isOpen, onToggle }: Props) {
     const { fadeUp } = useGlobalAnimations();
 
     return (

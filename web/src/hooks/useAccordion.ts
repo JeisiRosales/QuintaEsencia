@@ -5,6 +5,7 @@ type AccordionMode = 'single' | 'multi';
 interface UseAccordionReturn {
     isOpen: (id: string) => boolean;
     toggle: (id: string) => void;
+    open: (id: string) => void;
     openAll: (ids: string[]) => void;
     closeAll: () => void;
 }
@@ -38,6 +39,18 @@ export function useAccordion(
         });
     }, [mode]);
 
+    const open = useCallback((id: string) => {
+        setOpenIds((prev) => {
+            if (prev.has(id)) return prev;
+            const next = new Set(prev);
+            if (mode === 'single') {
+                next.clear();
+            }
+            next.add(id);
+            return next;
+        });
+    }, [mode]);
+
     const openAll = useCallback((ids: string[]) => {
         setOpenIds(new Set(ids));
     }, []);
@@ -46,5 +59,5 @@ export function useAccordion(
         setOpenIds(new Set());
     }, []);
 
-    return { isOpen, toggle, openAll, closeAll };
+    return { isOpen, toggle, open, openAll, closeAll };
 }

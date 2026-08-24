@@ -1,15 +1,7 @@
-export interface HelpItem {
-    id: string;
-    title: string;
-    content: React.ReactNode;
-}
+import React from 'react';
+import type { AccordionCategoryData } from '@/components/ui/accordion/types';
 
-export interface HelpCategory {
-    categoryName: string;
-    items: HelpItem[];
-}
-
-export const helpDictionary: HelpCategory[] = [
+export const helpDictionary: AccordionCategoryData[] = [
     {
         categoryName: "Soporte",
         items: [

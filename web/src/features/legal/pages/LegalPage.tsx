@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useLocation } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
-import { helpDictionary } from '@/features/ayuda/data/HelpData';
+import { legalDictionary } from '@/features/legal/data/LegalData';
 import { AccordionCategory } from '@/components/ui/accordion/AccordionCategory';
 
-export function HelpCenterPage() {
+export function LegalPage() {
     const { cascadeText, staggerContainer } = useGlobalAnimations();
 
     const location = useLocation();
@@ -37,20 +37,19 @@ export function HelpCenterPage() {
                         variants={cascadeText}
                         className="text-title-2 font-semibold text-dark-1"
                     >
-                        Centro de Asistencia
+                        Centro legal
                     </motion.h1>
                     <motion.p
                         variants={cascadeText}
                         className="mt-4 text-body-m text-dark-1/70 font-light max-w-2xl"
                     >
-                        Encuentra toda la informacion para facilitar tu experiencia con nosotros.
-                        Navega por las secciones para resolver tus dudas.
+                        Transparencia, confianza y claridad. A continuación, detallamos las normas que protegen tu experiencia y nuestra labor artesanal.
                     </motion.p>
                 </motion.div>
 
                 {/* Acordeones por categoria */}
                 <div className="flex flex-col gap-12 px-4">
-                    {helpDictionary.map((category) => (
+                    {legalDictionary.map((category) => (
                         <AccordionCategory
                             key={category.categoryName}
                             category={category}
