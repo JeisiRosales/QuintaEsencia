@@ -19,23 +19,24 @@ export function NavbarMobileDrawer({
     expandedMenu,
     toggleSubmenu,
 }: NavbarMobileDrawerProps) {
-    // Renderizado condicional en la raíz.
-    // Evita la "sopa de divs" ocultos y mejora el Web Performance general de la app 
-    // al no ensuciar el DOM cuando el panel está cerrado.
-    if (!isOpen) return null;
+    // El componente se mantiene montado siempre para permitir
+    // la animación de salida. Se usa data-[state] para controlar
+    // visibility y pointer-events según el estado.
 
     return (
         <>
             {/* Overlay */}
             <div
-                className="fixed inset-0 bg-black/40 z-[90] md:hidden animate-in fade-in duration-300"
+                data-state={isOpen ? 'open' : 'closed'}
+                className="fixed inset-0 bg-black/40 z-[90] md:hidden transition-opacity duration-300 data-[state=open]:opacity-100 data-[state=closed]:opacity-0 data-[state=closed]:pointer-events-none"
                 onClick={() => setIsOpen(false)}
                 aria-hidden="true"
             />
 
             {/* Panel lateral */}
             <div
-                className="fixed inset-y-0 left-0 w-full bg-light-1 z-[110] flex flex-col md:hidden shadow-2xl animate-in slide-in-from-left duration-300"
+                data-state={isOpen ? 'open' : 'closed'}
+                className="fixed inset-y-0 left-0 w-full bg-light-1 z-[110] flex flex-col md:hidden shadow-2xl transition-transform duration-300 ease-in-out data-[state=open]:translate-x-0 data-[state=closed]:-translate-x-full"
             >
                 <div className="h-16 flex items-center justify-between px-6 text-dark-1 border-b border-dark-3/50">
                     <p className="text-title-5">Explorar</p>

@@ -3,15 +3,14 @@ import logoQuintaEsencia from "@/assets/logos/logo_quinta_esencia_sin_fondo.webp
 import { SOCIAL_LINKS } from '@/utils/constants'
 
 // Interfaces
-interface FooterLink {
-    label: string
-    to?: string
-    hash?: string
+interface FooterSection {
+    title: string;
+    links: FooterLink[];
 }
 
-interface FooterSection {
-    title: string
-    links: FooterLink[]
+interface FooterLink {
+    label: string;
+    to: string;
 }
 
 const FOOTER_SECTIONS: FooterSection[] = [
@@ -27,27 +26,30 @@ const FOOTER_SECTIONS: FooterSection[] = [
     {
         title: 'Soporte',
         links: [
-            { label: '¿Cómo comprar?', to: '/ayuda' },
-            { label: 'Método de pago', to: '/ayuda' },
-            { label: 'Preguntas Frecuentes', to: '/ayuda' },
+            // Apuntamos al hash exacto definido en HelpData.ts
+            { label: '¿Cómo comprar?', to: '/ayuda#como-comprar' },
+            { label: 'Método de pago', to: '/ayuda#metodo-pago' },
+            { label: 'Preguntas Frecuentes', to: '/ayuda#preguntas-frecuentes' },
         ],
     },
     {
         title: 'Envíos y Entregas',
         links: [
-            { label: 'Entregas Personales', to: '/ayuda' },
-            { label: 'Envíos Nacionales', to: '/ayuda' },
+            // Apuntamos al hash exacto definido en HelpData.ts
+            { label: 'Entregas Personales', to: '/ayuda#entregas-personales' },
+            { label: 'Envíos Nacionales', to: '/ayuda#envios-nacionales' },
         ],
     },
     {
         title: 'Legal',
         links: [
-            { label: 'Políticas de Devolución', to: '/legal' },
-            { label: 'Términos y Condiciones', to: '/legal' },
-            { label: 'Políticas de Privacidad', to: '/legal' },
+            // Puedes aplicar la misma lógica para la sección legal en el futuro
+            { label: 'Políticas de Devolución', to: '/legal#devolucion' },
+            { label: 'Términos y Condiciones', to: '/legal#terminos' },
+            { label: 'Políticas de Privacidad', to: '/legal#privacidad' },
         ],
     },
-]
+];
 
 export function Footer() {
     return (
