@@ -1,27 +1,36 @@
-import { PRODUCT_FRAGMENT } from './fragments'
+import { PRODUCT_FRAGMENT, ARTICLE_FRAGMENT } from './fragments'
 
-// Obtiene los 3 artículos más recientes ordenados por fecha de creación
+// Obtiene todos los artículos ordenados por fecha
+export const ALL_ARTICLES_QUERY = `
+  *[_type == "article"] | order(_createdAt desc) {
+    ${ARTICLE_FRAGMENT}
+  }
+`
+
+// Obtiene los artículos más recientes (para la home, por ejemplo)
 export const LATEST_ARTICLES_QUERY = `
   *[_type == "article"] | order(_createdAt desc)[0...3] {
-    _id,
-    title,
-    slug,
-    mainImage,
-    excerpt,
-    intentions[]->{ _id, title, slug }
+    ${ARTICLE_FRAGMENT}
+  }
+`
+
+// Cuenta el total de artículos en la base de datos (útil para paginación)
+export const TOTAL_ARTICLES_QUERY = `
+  count(*[_type == "article"])
+`
+
+// Obtiene artículos con paginación basada en un rango [start...end]
+export const PAGINATED_ARTICLES_QUERY = `
+  *[_type == "article"] | order(_createdAt desc)[$start...$end] {
+    ${ARTICLE_FRAGMENT}
   }
 `
 
 // Obtiene un artículo completo por su URL (slug), incluyendo productos recomendados o alternativas de respaldo
 export const ARTICLE_BY_SLUG_QUERY = `
   *[_type == "article" && slug.current == $slug][0] {
-    _id,
-    title,
-    slug,
-    mainImage,
-    excerpt,
+    ${ARTICLE_FRAGMENT},
     content,
-    intentions[]->{ _id, title, slug },
     recommendedProducts[]->{
       ${PRODUCT_FRAGMENT}
     },
