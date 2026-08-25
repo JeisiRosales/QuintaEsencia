@@ -39,3 +39,12 @@ export const ARTICLE_BY_SLUG_QUERY = `
     }
   }
 `
+
+// Obtiene todas las intenciones disponibles para el filtro del buscador
+export const ALL_INTENTIONS_QUERY = `
+  *[_type == "intention" && count(*[_type == "article" && references(^._id)]) > 0] | order(title asc) {
+    _id,
+    title,
+    slug
+  }
+`

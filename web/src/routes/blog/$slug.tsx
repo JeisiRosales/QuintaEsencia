@@ -1,29 +1,26 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, notFound } from '@tanstack/react-router'
+import { ArticleDetailPage } from '@/features/blog/pages/ArticleDetailPage'
+import { getArticleBySlug } from '@/api/articles' // Ajusta la ruta a tu endpoint de lectura por slug
 
 export const Route = createFileRoute('/blog/$slug')({
-  component: ArticuloDetailComponent,
+  // 1. Extraemos el slug del parámetro de la URL y traemos la lectura desde Sanity
+  loader: async ({ params }) => {
+    const article = await getArticleBySlug(params.slug)
+
+    // Si la lectura no existe en Sanity, activamos la pantalla 404 de TanStack Router
+    if (!article) {
+      throw notFound()
+    }
+
+    return { article }
+  },
+  // 2. Renderizamos el componente envoltorio que pasa la prop
+  component: ArticleDetailRouteComponent,
 })
 
-function ArticuloDetailComponent() {
-  // Extraemos el slug exacto desde la URL
-  const { slug } = Route.useParams()
+function ArticleDetailRouteComponent() {
+  // 3. Obtenemos el artículo cargado en el loader
+  const { article } = Route.useLoaderData()
 
-  return (
-    <article className="p-8 mt-20 max-w-3xl mx-auto">
-      <h1 className="text-title-3 mb-2">Lectura del Artículo</h1>
-
-      <div className="bg-light-2 p-4 rounded-md mb-8">
-        <p className="text-body-m text-dark-2">
-          Buscando en la base de datos el artículo con el slug: <br />
-          <strong className="text-secondary">{slug}</strong>
-        </p>
-      </div>
-
-      {/* Aquí luego usarás el slug para hacer fetch a tu API de Sanity: 
-          ej: getArticleBySlug(slug) y renderizarás el contenido rico (PortableText) */}
-      <div className="prose prose-stone">
-        <p>Contenido del artículo en construcción...</p>
-      </div>
-    </article>
-  )
+  return <ArticleDetailPage article={article} />
 }

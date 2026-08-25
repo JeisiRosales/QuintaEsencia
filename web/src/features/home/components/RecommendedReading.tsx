@@ -65,10 +65,8 @@ export function RecommendedReading() {
                                                 {article.title}
                                             </p>
                                             {/* Since we don't have read time directly, we can show a placeholder or use the excerpt if needed, but the design shows a short text like "Three-minute read". Let's show a standard text or if excerpt exists. */}
-                                            <p className="text-sub-title text-dark-3">
-                                                {article.excerpt && article.excerpt.length > 150
-                                                    ? `${article.excerpt.substring(0, 150)}...`
-                                                    : article.excerpt}
+                                            <p className="text-sub-title text-dark-3 line-clamp-3">
+                                                {article.excerpt}
                                             </p>
                                         </div>
                                     </div>
