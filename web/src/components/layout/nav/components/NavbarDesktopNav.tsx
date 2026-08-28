@@ -56,7 +56,7 @@ export function NavbarDesktopNav({
                                     <Link
                                         key={sub.slug}
                                         to={link.path}
-                                        search={() => ({ search: sub.slug })}
+                                        search={() => ({ category: sub.id ?? sub.slug })}
                                         onClick={() => {
                                             setOpenDesktopMenu(null)
                                             setHoveredMenu(null)

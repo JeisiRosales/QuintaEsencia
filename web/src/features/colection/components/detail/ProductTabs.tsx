@@ -91,16 +91,39 @@ export function ProductTabs({ product, activeTab, onTabChange }: ProductTabsProp
         }
     };
 
+    // Tabs con su condición de visibilidad.
+    // Un tab solo se renderiza si el campo del producto tiene datos reales.
+    const allTabs: { id: TabType; label: string; hasContent: boolean }[] = [
+        {
+            id: 'description',
+            label: 'Propósito',
+            // description es campo principal — siempre visible
+            hasContent: !!(product.description || product.tagline || product.intentions?.length),
+        },
+        {
+            id: 'ingredients',
+            label: 'Fórmula Botánica',
+            hasContent: !!(product.ingredients?.length),
+        },
+        {
+            id: 'ritual',
+            label: 'El Ritual',
+            hasContent: !!(product.ritualSteps?.length),
+        },
+        {
+            id: 'decree',
+            label: 'Palabras de Poder',
+            hasContent: !!(product.connectionDecree?.trim()),
+        },
+    ];
+
+    const visibleTabs = allTabs.filter((tab) => tab.hasContent);
+
     return (
         <div className="w-full mt-4">
             <div className="flex gap-6 border-b border-dark-1/10 mb-6 overflow-x-auto hide-scrollbar">
-                {[
-                    { id: 'description', label: 'Propósito' },
-                    { id: 'ingredients', label: 'Fórmula Botánica' },
-                    { id: 'ritual', label: 'El Ritual' },
-                    { id: 'decree', label: 'Palabras de Poder' }
-                ].map((tab) => (
-                    <button key={tab.id} onClick={() => onTabChange(tab.id as TabType)} className={`pb-2 whitespace-nowrap text-body-m transition-colors font-medium ${activeTab === tab.id ? 'text-dark-1 border-b-2 border-olive' : 'text-dark-3/60 hover:text-dark-2'}`}>
+                {visibleTabs.map((tab) => (
+                    <button key={tab.id} onClick={() => onTabChange(tab.id as TabType)} className={`pb-2 whitespace-nowrap text-body-m transition-colors font-medium cursor-pointer ${activeTab === tab.id ? 'text-dark-1 border-b-2 border-olive' : 'text-dark-3/60 hover:text-dark-2'}`}>
                         {tab.label}
                     </button>
                 ))}

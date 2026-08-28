@@ -34,7 +34,7 @@ export function MobileDrawerAccordion({ link, expandedMenu, toggleSubmenu, setIs
                             <Link
                                 key={sub.slug}
                                 to="/coleccion"
-                                search={() => ({ search: sub.slug })}
+                                search={() => ({ category: sub.id ?? sub.slug })}
                                 onClick={() => setIsOpen(false)}
                                 className="text-body-m text-dark-2 hover:text-secondary transition-colors"
                             >

@@ -87,10 +87,10 @@ export function ProductCardDesktop({ product }: { product: Product }) {
                 </div>
 
                 {/* Información del Producto */}
-                <div className="flex items-end justify-between pb-0 pb-2">
+                <div className="flex items-end justify-between p-4">
                     {/* Bloque Izquierdo */}
                     <div className="flex flex-col justify-end">
-                        <span className="text-sub-title uppercase tracking-wider text-dark-2/80 leading-none mb-1">
+                        <span className="text-sub-title uppercase tracking-wider text-dark-2/80 leading-none">
                             {product.category?.title || 'BOTÁNICA'}
                         </span>
                         <h3 className="text-title-6 font-bold text-dark-1 leading-none transition-colors">

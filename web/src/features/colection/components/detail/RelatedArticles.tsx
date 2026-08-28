@@ -9,7 +9,7 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
     const imageUrl = (image: SanityImage) => urlFor(image).width(200).format('webp').url();
 
     return (
-        <section className="my-6 py-4 border-t border-dark-1/10 w-full">
+        <section className="my-6 py-6 border-t border-dark-1/10 w-full">
             <h3 className="text-title-4 text-dark-1 mb-6">Lecturas relacionadas con esta alquímia</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {articles.map((article) => (
@@ -17,7 +17,7 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
                         key={article._id}
                         to="/blog/$slug"
                         params={{ slug: article.slug.current }}
-                        className="flex gap-4 p-4 rounded-2xl bg-light-2 hover:bg-light-3 transition-colors group"
+                        className="flex gap-4 p-4 rounded-2xl bg-light-1/10 hover:bg-light-2 border border-dark-1/20 transition-colors group shadow-md shadow-dark-1/10"
                         aria-label={`Leer artículo sobre ${article.title}`}
                     >
                         <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-dark-1/5">

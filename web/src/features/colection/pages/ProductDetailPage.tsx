@@ -24,7 +24,7 @@ export function ProductDetailPage({ product }: { product: Product }) {
                     productName={product.name}
                 />
 
-                <section className="flex flex-col">
+                <section className="flex flex-col mb-4">
                     <h1 className="text-title-2 font-bold text-dark-1 mb-2">{product.name}</h1>
                     <ProductBadges isHandmade={product.isHandmade} isOrganic={product.isOrganic} weight={product.weight} />
                     <p className="text-body-m text-dark-1 mt-4">{product.shortDescription}</p>

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { ShoppingCart, Menu } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import logoQuintaEsencia from '@/assets/logos/logo_quinta_esencia_sin_fondo.webp'
 import { useNavbarState } from './hooks/useNavbarState'
 import { useTypeAheadSearch } from '@/hooks/useTypeAheadSearch'
@@ -8,11 +8,13 @@ import { NavbarDesktopNav } from './components/NavbarDesktopNav'
 import { NavbarMobileDrawer } from './components/NavbarMobileDrawer'
 import type { NavLink } from './types'
 import { useState } from 'react'
+import { CartTrigger, CartDrawer } from '@/components/cart'
 
 export function Navbar() {
     const navState = useNavbarState()
     const search = useTypeAheadSearch('global')
     const [isSearchMobileOpen, setIsSearchMobileOpen] = useState(false)
+    const [isCartOpen, setIsCartOpen] = useState(false)
 
     // Enlaces de navegación construidos con datos dinámicos del buscador
     const navItems: NavLink[] = [
@@ -25,6 +27,7 @@ export function Navbar() {
                 ...(search.searchData?.topCategories || []).map(cat => ({
                     name: cat.title,
                     slug: cat.slug.current,
+                    id: cat._id,          // _id necesario para el filtro ?category=
                 })),
             ],
         },
@@ -90,9 +93,7 @@ export function Navbar() {
                     <div className="flex-1 flex items-center justify-end gap-2 text-dark-1">
                         <TypeAheadSearch variant="navbar" context="global" onSearchStateChange={setIsSearchMobileOpen} />
 
-                        <Link to="/" className="p-2 hover:text-dark-3 transition-colors" aria-label="Carrito">
-                            <ShoppingCart className="w-5 h-5 stroke-[1.5]" />
-                        </Link>
+                        <CartTrigger onClick={() => setIsCartOpen(true)} />
                     </div>
                 </div>
             </header>
@@ -107,6 +108,11 @@ export function Navbar() {
                 expandedMenu={navState.expandedMenu}
                 toggleSubmenu={navState.toggleSubmenu}
             />
+
+            {/* =========================================
+                DRAWER DEL CARRITO DE COMPRAS
+            ========================================= */}
+            <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         </>
     )
 }
