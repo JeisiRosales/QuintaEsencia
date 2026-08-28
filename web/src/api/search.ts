@@ -1,6 +1,8 @@
 import { client } from '@/lib/sanity'
 import type { Category, Intention, Product, Article } from '@/types'
-import { ZERO_STATE_SEARCH_QUERY, LIVE_SEARCH_QUERY } from './queries/search'
+import { getZeroStateSearchQuery, getLiveSearchQuery, type SearchContext } from './queries/search'
+
+export type { SearchContext }
 
 // INTERFACES DE RESPUESTA
 
@@ -22,16 +24,16 @@ export interface LiveSearchResponse {
 }
 
 // Obtiene los resultados de búsqueda en tiempo real
-export async function getLiveSearchResults(query: string): Promise<LiveSearchResponse> {
+export async function getLiveSearchResults(query: string, context: SearchContext = 'global'): Promise<LiveSearchResponse> {
   if (!query || query.trim() === '') {
     return { products: [], articles: [], taxonomies: [] }
   }
   const trimmedQuery = query.trim()
   const searchQuery = `*${trimmedQuery}*`
 
-  return await client.fetch(LIVE_SEARCH_QUERY, { searchQuery })
+  return await client.fetch(getLiveSearchQuery(context), { searchQuery })
 }
 
-export async function getZeroStateSearch(): Promise<ZeroStateSearchResponse> {
-  return await client.fetch(ZERO_STATE_SEARCH_QUERY)
+export async function getZeroStateSearch(context: SearchContext = 'global'): Promise<ZeroStateSearchResponse> {
+  return await client.fetch(getZeroStateSearchQuery(context))
 }

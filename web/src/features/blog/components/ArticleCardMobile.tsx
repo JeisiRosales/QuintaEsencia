@@ -32,8 +32,9 @@ export function ArticleCardMobile({ article }: ArticleCardMobileProps) {
                             src={imageUrlMobile}
                             alt={article.title}
                             className="w-full h-full object-cover block transition-transform duration-500 hover:scale-105"
-                            loading="lazy"
+                            fetchPriority="high"
                             decoding="async"
+                            loading="eager"
                         />
                     </picture>
                 </div>

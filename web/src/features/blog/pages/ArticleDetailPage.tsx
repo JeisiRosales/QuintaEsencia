@@ -5,8 +5,9 @@ import { RecommendedProductsSidebar } from '../components/RecommendedProductsSid
 import { PortableTextRenderer } from '../components/PortableTextRenderer';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
 import { useNavbarState } from '@/components/layout/nav/hooks/useNavbarState';
-import { useShare } from '../hooks/useShare';
+import { useShare } from '@/hooks/useShare';
 import { Share2 } from 'lucide-react';
+import { Breadcrumbs } from '@/components/ui/BreadCrumbs';
 
 interface ArticleDetailPageProps {
     article: Article;
@@ -35,11 +36,14 @@ export function ArticleDetailPage({ article }: ArticleDetailPageProps) {
                 animate="show"
                 className="max-w-7xl">
 
+
                 {/* Grid Responsivo de 2 Columnas */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
 
                     {/* COLUMNA IZQUIERDA (70% en Desktop - Lectura Principal) */}
                     <div className="md:col-span-8 flex flex-col self-start order-1 px-6 md:px-0 md:pl-12 md:pr-6 pb-0 pt-24 md:py-24">
+                        {/* BreadCrumb */}
+                        <Breadcrumbs skip={1} rootLabel="Blog" rootPath="/blog" />
 
                         {/* Intenciones y Título */}
                         <div className="space-y-4 mb-8">

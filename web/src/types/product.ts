@@ -22,3 +22,9 @@ export interface Product {
     isOrganic: boolean;
     relatedArticles?: Article[]; // Para la polinización cruzada en el frontend
 }
+
+export interface ProductBadge {
+    _id: string;
+    label: string;
+    icon: string;
+}

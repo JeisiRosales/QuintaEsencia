@@ -47,8 +47,9 @@ export function TheCreator() {
                             src={creatorImg}
                             alt="Manos creando alquimia"
                             className="w-full h-full object-cover block"
-                            loading="lazy"
+                            fetchPriority="high"
                             decoding="async"
+                            loading="eager"
                         />
                     </picture>
                 </motion.div>

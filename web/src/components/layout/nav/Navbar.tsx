@@ -2,15 +2,17 @@ import { Link } from '@tanstack/react-router'
 import { ShoppingCart, Menu } from 'lucide-react'
 import logoQuintaEsencia from '@/assets/logos/logo_quinta_esencia_sin_fondo.webp'
 import { useNavbarState } from './hooks/useNavbarState'
-import { useNavbarSearch } from './hooks/useNavbarSearch'
+import { useTypeAheadSearch } from '@/hooks/useTypeAheadSearch'
+import { TypeAheadSearch } from '@/components/shared/TypeAheadSearch'
 import { NavbarDesktopNav } from './components/NavbarDesktopNav'
-import { NavbarSearch } from './components/NavbarSearch'
 import { NavbarMobileDrawer } from './components/NavbarMobileDrawer'
 import type { NavLink } from './types'
+import { useState } from 'react'
 
 export function Navbar() {
     const navState = useNavbarState()
-    const search = useNavbarSearch()
+    const search = useTypeAheadSearch('global')
+    const [isSearchMobileOpen, setIsSearchMobileOpen] = useState(false)
 
     // Enlaces de navegación construidos con datos dinámicos del buscador
     const navItems: NavLink[] = [
@@ -23,10 +25,6 @@ export function Navbar() {
                 ...(search.searchData?.topCategories || []).map(cat => ({
                     name: cat.title,
                     slug: cat.slug.current,
-                })),
-                ...(search.searchData?.topIntentions || []).map(int => ({
-                    name: int.title,
-                    slug: int.slug.current,
                 })),
             ],
         },
@@ -66,7 +64,10 @@ export function Navbar() {
                     <div className="flex-1 flex items-center justify-center">
                         <Link
                             to="/"
-                            className={`md:hidden flex flex-col items-center justify-center group transition-all duration-200 ${search.isSearchOpen ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'}`}
+                            className={`md:hidden flex flex-col items-center justify-center group transition-all duration-200 
+                                ${search.isSearchOpen ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'}
+                                ${isSearchMobileOpen ? 'hidden md:block' : 'block'}
+                                `}
                         >
                             <img
                                 src={logoQuintaEsencia}
@@ -87,18 +88,7 @@ export function Navbar() {
 
                     {/* DERECHA: Buscador y Carrito */}
                     <div className="flex-1 flex items-center justify-end gap-2 text-dark-1">
-                        <NavbarSearch
-                            isSearchOpen={search.isSearchOpen}
-                            setIsSearchOpen={search.setIsSearchOpen}
-                            searchQuery={search.searchQuery}
-                            setSearchQuery={search.setSearchQuery}
-                            searchData={search.searchData}
-                            isLoading={search.isLoading}
-                            liveSearchData={search.liveSearchData}
-                            isSearchingLive={search.isSearchingLive}
-                            searchInputRef={search.searchInputRef}
-                            searchContainerRef={search.searchContainerRef}
-                        />
+                        <TypeAheadSearch variant="navbar" context="global" onSearchStateChange={setIsSearchMobileOpen} />
 
                         <Link to="/" className="p-2 hover:text-dark-3 transition-colors" aria-label="Carrito">
                             <ShoppingCart className="w-5 h-5 stroke-[1.5]" />

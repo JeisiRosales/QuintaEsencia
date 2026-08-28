@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
-import { getZeroStateSearch, ZeroStateSearchResponse, getLiveSearchResults, LiveSearchResponse } from '@/api/search'
+import { getZeroStateSearch, getLiveSearchResults, type ZeroStateSearchResponse, type LiveSearchResponse, type SearchContext } from '@/api/search'
 import { useDebounce } from '@/hooks/useDebounce'
 
-export function useNavbarSearch() {
+export function useTypeAheadSearch(context: SearchContext = 'global') {
     const [searchData, setSearchData] = useState<ZeroStateSearchResponse | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -36,29 +36,29 @@ export function useNavbarSearch() {
     useEffect(() => {
         if (debouncedSearchQuery.trim().length > 0) {
             setIsSearchingLive(true)
-            getLiveSearchResults(debouncedSearchQuery)
+            getLiveSearchResults(debouncedSearchQuery, context)
                 .then(setLiveSearchData)
                 .finally(() => setIsSearchingLive(false))
         } else {
             setLiveSearchData(null)
             setIsSearchingLive(false)
         }
-    }, [debouncedSearchQuery])
+    }, [debouncedSearchQuery, context])
 
-    // Fetch de datos al cargar el Navbar (zero state)
+    // Fetch de datos inicial (zero state)
     useEffect(() => {
-        async function fetchDynamicNav() {
+        async function fetchInitialData() {
             try {
-                const data = await getZeroStateSearch()
+                const data = await getZeroStateSearch(context)
                 setSearchData(data)
             } catch (error) {
-                console.error('Error cargando los datos del menú:', error)
+                console.error('Error cargando sugerencias iniciales:', error)
             } finally {
                 setIsLoading(false)
             }
         }
-        fetchDynamicNav()
-    }, [])
+        fetchInitialData()
+    }, [context])
 
     return {
         searchData,

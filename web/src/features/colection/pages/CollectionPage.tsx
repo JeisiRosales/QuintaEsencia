@@ -1,25 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import type { Article } from '@/types';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { useItemSearch } from '@/hooks/useItemsSearch';
-import { ArticleSearchHeader } from '../components/ArticleSearchHeader';
-import { ArticleCardDesktop } from '../components/ArticleCardDesktop';
-import { ArticleCardMobile } from '../components/ArticleCardMobile';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
-import { Button } from '@/components/ui/Button';
+import { useItemSearch } from '@/hooks/useItemsSearch';
+import { CollectionSearchHeader } from '../components/list/CollectionSearchHeader';
+import { ProductCardDesktop } from '../components/list/ProductCardDesktop';
+import { ProductCardMobile } from '../components/list/ProductCardMobile';
 import { FilterDrawer, type FilterGroup } from '@/components/shared/FilterDrawer';
 import { FilterToolbar } from '@/components/shared/FilterToolbar';
-import type { Intention } from '@/types/taxonomy';
+import type { Product } from '@/types/product';
+import type { Intention, Category } from '@/types/taxonomy';
+import { Button } from '@/components/ui/Button';
 
-interface BlogPageProps {
-    initialArticles: Article[];
+interface CollectionPageProps {
+    initialProducts: Product[];
     intentions: Intention[];
+    categories: Category[];
     initialQuery?: string;
     initialIntention?: string;
+    initialCategory?: string;
 }
 
-export function BlogPage({ initialArticles, intentions, initialQuery, initialIntention }: BlogPageProps) {
+export function CollectionPage({
+    initialProducts,
+    intentions,
+    categories,
+    initialQuery,
+    initialIntention,
+    initialCategory,
+}: CollectionPageProps) {
     const isMobile = useMediaQuery('(max-width: 767px)');
     const { fadeUp } = useGlobalAnimations();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -29,20 +38,24 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
         setSearchQuery,
         selectedIntention,
         setSelectedIntention,
-        filteredItems: filteredArticles,
+        selectedCategory,
+        setSelectedCategory,
+        filteredItems: filteredProducts,
         activeFilterCount,
         clearFilters,
-    } = useItemSearch(initialArticles, {
+    } = useItemSearch(initialProducts, {
         intentions,
+        categories,
         initialQuery,
         initialIntention,
-        getSearchableTexts: (article: Article) => ({
-            title: article.title,
-            description: article.excerpt,
+        initialCategory,
+        getSearchableTexts: (p: Product) => ({
+            title: p.name,
+            description: p.shortDescription,
         }),
     });
 
-    // Solo un grupo de filtros: intenciones
+    // Grupos de filtros para el drawer
     const filterGroups: FilterGroup[] = [
         {
             id: 'intentions',
@@ -54,12 +67,45 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
             selectedValue: selectedIntention,
             onChange: setSelectedIntention,
         },
+        {
+            id: 'categories',
+            label: 'Categorías',
+            options: [
+                { value: null, label: 'Todas las categorías' },
+                ...categories.map(c => ({ value: c._id, label: c.title })),
+            ],
+            selectedValue: selectedCategory,
+            onChange: setSelectedCategory,
+        },
     ];
 
+    useEffect(() => {
+        // Si el buscador del Navbar cambió la intención en la URL
+        if (initialIntention !== undefined) {
+            setSelectedIntention(initialIntention ? initialIntention : null);
+        }
+
+        // Si el buscador del Navbar cambió la categoría en la URL
+        if (initialCategory !== undefined) {
+            setSelectedCategory(initialCategory ? initialCategory : null);
+        }
+
+        // Si se hizo una búsqueda por texto
+        if (initialQuery !== undefined) {
+            setSearchQuery(initialQuery || '');
+        }
+    }, [
+        initialIntention,
+        initialCategory,
+        initialQuery,
+        setSelectedIntention,
+        setSelectedCategory,
+        setSearchQuery
+    ]);
+
     return (
-        <main className="w-full min-h-screen mb-12">
-            {/* Header con Buscador */}
-            <ArticleSearchHeader />
+        <main className="w-full min-h-screen pb-24">
+            <CollectionSearchHeader />
 
             {/* Drawer de filtros */}
             <FilterDrawer
@@ -68,7 +114,7 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
                 filterGroups={filterGroups}
                 activeFilterCount={activeFilterCount}
                 onClear={clearFilters}
-                resultCount={filteredArticles.length}
+                resultCount={filteredProducts.length}
             />
 
             <div className="max-w-7xl mx-auto py-4 px-4 md:px-8">
@@ -81,17 +127,17 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
                 >
                     <div className="space-y-2">
                         <h2 className="text-title-3 md:text-title-2 font-semibold text-dark-1 tracking-tight">
-                            Lecturas para el alma
+                            Alquímias para el alma
                         </h2>
                         <p className="text-body-m text-dark-2 max-w-lg">
-                            Palabras y saberes intencionados para pausar, reflexionar y reconectar con tu medicina interior.
+                            Saberes y sentires intencionados para pausar, reflexionar y reconectar con tu medicina interior.
                         </p>
                     </div>
                     <div className="flex flex-col justify-end items-center">
                         {/* Toolbar con trigger de filtros y conteo */}
                         <FilterToolbar
-                            resultCount={filteredArticles.length}
-                            resultLabel={filteredArticles.length === 1 ? 'lectura disponible' : 'lecturas disponibles'}
+                            resultCount={filteredProducts.length}
+                            resultLabel={filteredProducts.length === 1 ? 'alquimia' : 'alquimias'}
                             activeFilterCount={activeFilterCount}
                             onOpenDrawer={() => setIsDrawerOpen(true)}
                             onClear={clearFilters}
@@ -99,23 +145,20 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
                     </div>
                 </motion.div>
 
-                {/* Renderizado de Cards o Estado Vacío */}
-                {filteredArticles.length > 0 ? (
+                {filteredProducts.length > 0 ? (
                     <motion.div
                         variants={fadeUp}
                         initial="hidden"
                         animate="show"
                         className={`mt-8 ${isMobile
                             ? "flex flex-col gap-4"
-                            : "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8"
+                            : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                             }`}
                     >
-                        {filteredArticles.map((article) => (
-                            isMobile ? (
-                                <ArticleCardMobile key={article._id} article={article} />
-                            ) : (
-                                <ArticleCardDesktop key={article._id} article={article} />
-                            )
+                        {filteredProducts.map((product) => (
+                            isMobile
+                                ? <ProductCardMobile key={product._id} product={product} />
+                                : <ProductCardDesktop key={product._id} product={product} />
                         ))}
                     </motion.div>
                 ) : (
@@ -132,11 +175,11 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
                         </div>
 
                         <h3 className="text-title-4 font-sans font-semibold text-dark-1 leading-snug">
-                            Esta sabiduría aún está por florecer...
+                            Pronto tendremos esta alquimia para ti...
                         </h3>
 
                         <p className="text-body-m font-sans font-light text-dark-2/80 leading-relaxed">
-                            Aún no hemos escrito una lectura para <span className="text-gold font-normal">"{searchQuery}"</span>. Te invitamos a pausar, limpiar el filtro o explorar todo el Santuario.
+                            <span className="text-gold font-normal">"{searchQuery}"</span> no fue encontrado en nuestro santuario.
                         </p>
 
                         <div className="pt-2">
@@ -147,7 +190,7 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
                                 }}
                                 variant="goldFill"
                                 size="small"
-                                label="Desvelar todas las lecturas"
+                                label="Desvelar todas las alquimias"
                             />
                         </div>
                     </motion.div>

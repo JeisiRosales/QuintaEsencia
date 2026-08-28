@@ -31,6 +31,9 @@ export function TheMission() {
                     <img
                         src={missionImg}
                         alt="Baño relajante de botánica sagrada"
+                        fetchPriority="high"
+                        decoding="async"
+                        loading="eager"
                         className="w-4/5 md:w-[110%] h-auto drop-shadow-2xl md:-ml-10"
                     />
                 </motion.div>

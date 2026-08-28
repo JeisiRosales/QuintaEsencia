@@ -30,8 +30,9 @@ export function ArticleCardDesktop({ article }: ArticleCardDesktopProps) {
                             src={imageUrlDesktop}
                             alt={article.title}
                             className="w-full h-full object-cover block transform group-hover:scale-102 transition-transform duration-700 ease-out rounded-2xl"
-                            loading="lazy"
+                            fetchPriority="high"
                             decoding="async"
+                            loading="eager"
                         />
                     </picture>
                 </div>

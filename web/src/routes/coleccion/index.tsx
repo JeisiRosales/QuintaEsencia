@@ -1,35 +1,45 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { CollectionPage } from '@/features/colection/pages/CollectionPage'
+import { getProducts } from '@/api/products'
+import { getAllCategories, getAllIntentions } from '@/api/products'
 
-// 1. Definimos la forma de nuestros parámetros de búsqueda (Search Params)
 type ColeccionSearch = {
-  search?: string
+  q?: string          // texto libre de búsqueda
+  intention?: string  // _id de la intención seleccionada
+  category?: string   // _id de la categoría seleccionada
 }
 
 export const Route = createFileRoute('/coleccion/')({
-  // 2. validateSearch es obligatorio en TanStack para leer el ?search=...
   validateSearch: (search: Record<string, unknown>): ColeccionSearch => {
     return {
-      search: (search.search as string) || undefined,
+      q: (search.q as string) || undefined,
+      intention: (search.intention as string) || undefined,
+      category: (search.category as string) || undefined,
     }
   },
-  component: ColeccionComponent,
+  loader: async () => {
+    const [initialProducts, intentions, categories] = await Promise.all([
+      getProducts(),
+      getAllIntentions(),
+      getAllCategories(),
+    ])
+    return { initialProducts, intentions, categories }
+  },
+  component: ColeccionRouteComponent,
 })
 
-function ColeccionComponent() {
-  // 3. Consumimos el parámetro directamente desde el hook de la ruta
-  const { search } = Route.useSearch()
+function ColeccionRouteComponent() {
+  const { initialProducts, intentions, categories } = Route.useLoaderData()
+  const { q, intention, category } = Route.useSearch()
 
   return (
-    <div className="p-8 mt-20">
-      <h1 className="text-title-2 mb-4">La Colección</h1>
-
-      {search ? (
-        <p>Mostrando resultados para la intención/categoría: <strong>{search}</strong></p>
-      ) : (
-        <p>Mostrando todos los productos de la botica.</p>
-      )}
-
-      {/* Aquí irá luego tu grid de productos */}
-    </div>
+    <CollectionPage
+      initialProducts={initialProducts}
+      intentions={intentions}
+      categories={categories}
+      initialQuery={q}
+      initialIntention={intention}
+      initialCategory={category}
+    />
   )
 }

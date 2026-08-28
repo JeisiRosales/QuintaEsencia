@@ -127,6 +127,9 @@ export function StepsSection() {
                             src={step.image}
                             alt={step.title}
                             draggable={false}
+                            fetchPriority="high"
+                            decoding="async"
+                            loading="eager"
                             className="w-full h-full object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)] select-none pointer-events-auto"
                         />
                     </div>

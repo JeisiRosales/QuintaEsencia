@@ -16,8 +16,9 @@ export function ThePhilosophy() {
                         src={alchemyImg}
                         alt="Textura botánica"
                         className="w-full h-full object-cover backdrop-blur-sm"
-                        loading="lazy"
+                        fetchPriority="high"
                         decoding="async"
+                        loading="eager"
                     />
                 </picture>
             </div>

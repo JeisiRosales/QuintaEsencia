@@ -53,6 +53,9 @@ export function RecommendedReading() {
                                                 <img
                                                     src={imageUrl}
                                                     alt={article.title}
+                                                    fetchPriority="high"
+                                                    decoding="async"
+                                                    loading="eager"
                                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                                                 />
                                             )}

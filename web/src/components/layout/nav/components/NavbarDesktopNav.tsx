@@ -55,7 +55,7 @@ export function NavbarDesktopNav({
                                 {link.sublinks.map((sub) => (
                                     <Link
                                         key={sub.slug}
-                                        to="/coleccion"
+                                        to={link.path}
                                         search={() => ({ search: sub.slug })}
                                         onClick={() => {
                                             setOpenDesktopMenu(null)

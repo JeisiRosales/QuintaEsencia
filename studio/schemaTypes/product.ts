@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
     name: 'product',
@@ -9,34 +9,34 @@ export default defineType({
             name: 'name',
             title: 'Nombre del Producto',
             type: 'string',
-            validation: (Rule) => Rule.required(),
+            validation: (Rule: any) => Rule.required(),
         }),
         defineField({
             name: 'slug',
             title: 'Enlace del Producto (URL)',
             type: 'slug',
             options: { source: 'name', maxLength: 96 },
-            validation: (Rule) => Rule.required(),
+            validation: (Rule: any) => Rule.required(),
         }),
         defineField({
             name: 'category',
             title: 'Categoría Principal',
             type: 'reference',
             to: [{ type: 'category' }],
-            validation: (Rule) => Rule.required(),
+            validation: (Rule: any) => Rule.required(),
         }),
         defineField({
             name: 'intentions',
             title: 'Intenciones / Propósitos',
             type: 'array',
             of: [{ type: 'reference', to: [{ type: 'intention' }] }],
-            validation: (Rule) => Rule.required(),
+            validation: (Rule: any) => Rule.required(),
         }),
         defineField({
             name: 'price',
             title: 'Precio ($)',
             type: 'number',
-            validation: (Rule) => Rule.required().min(0),
+            validation: (Rule: any) => Rule.required().min(0),
         }),
         defineField({
             name: 'weight',
@@ -48,7 +48,7 @@ export default defineType({
             title: 'Descripción Corta',
             type: 'text',
             rows: 3,
-            validation: (Rule) => Rule.required().max(160),
+            validation: (Rule: any) => Rule.required().max(160),
         }),
         defineField({
             name: 'tagline',
@@ -66,6 +66,7 @@ export default defineType({
             title: 'Imágenes Adicionales',
             type: 'array',
             of: [{ type: 'image', options: { hotspot: true } }],
+            validation: (Rule: any) => Rule.max(4),
         }),
         defineField({
             name: 'description',

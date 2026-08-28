@@ -37,3 +37,23 @@ export const HOME_FEATURED_PRODUCTS_QUERY = `
   }
 }
 `
+
+// Obtiene todas las categorías de productos ordenadas por número de productos
+export const ALL_CATEGORIES_QUERY = `
+  *[_type == "category"] {
+    _id,
+    title,
+    slug,
+    description,
+    "productCount": count(*[_type == "product" && references(^._id)])
+  } | order(productCount desc)
+`
+
+// Obtiene todas las intenciones disponibles para el filtro del buscador
+export const ALL_INTENTIONS_PRODUCTS_QUERY = `
+  *[_type == "intention" && count(*[_type == "product" && references(^._id)]) > 0] | order(title asc) {
+    _id,
+    title,
+    slug
+  }
+`

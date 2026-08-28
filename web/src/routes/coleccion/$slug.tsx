@@ -1,19 +1,26 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, notFound } from '@tanstack/react-router'
+import { ProductDetailPage } from '@/features/colection/pages/ProductDetailPage'
+import { getProductBySlug } from '@/api/products'
 
 export const Route = createFileRoute('/coleccion/$slug')({
-  component: ProductDetailComponent,
+  // 1. Extraemos el slug del parámetro de la URL y traemos el producto desde Sanity
+  loader: async ({ params }) => {
+    const product = await getProductBySlug(params.slug)
+
+    // Si el producto no existe en Sanity, activamos la pantalla 404 de TanStack Router
+    if (!product) {
+      throw notFound()
+    }
+
+    return { product }
+  },
+  // 2. Renderizamos el componente envoltorio que pasa la prop
+  component: ProductDetailRouteComponent,
 })
 
-function ProductDetailComponent() {
-  // TanStack Router extrae automáticamente los parámetros dinámicos de la URL
-  const { slug } = Route.useParams()
+function ProductDetailRouteComponent() {
+  // 3. Obtenemos el producto cargado en el loader
+  const { product } = Route.useLoaderData()
 
-  return (
-    <div className="p-8 mt-20">
-      <h1 className="text-title-3">Detalle del Producto</h1>
-      <p>Estás viendo el producto con el slug: <strong>{slug}</strong></p>
-
-      {/* Aquí luego harás el fetch a tu API: getProductBySlug(slug) */}
-    </div>
-  )
+  return <ProductDetailPage product={product} />
 }

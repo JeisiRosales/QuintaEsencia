@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
-import { CircleX } from 'lucide-react';
-import blogHeroBg from '@/assets/blog/hero-bg.webp';
-
+import storeHeroBg from '@/assets/colection/hero-bg.webp';
 import { TypeAheadSearch } from '@/components/shared/TypeAheadSearch';
 
-export function ArticleSearchHeader() {
+export function CollectionSearchHeader() {
     const { staggerContainer, cascadeText, fadeUp } = useGlobalAnimations();
 
     return (
@@ -13,11 +11,11 @@ export function ArticleSearchHeader() {
             <header className="relative w-full h-[75vh] min-h-[520px] max-h-[750px] shadow-2xl overflow-visible rounded-2xl">
                 {/* Imagen de fondo */}
                 <picture className="absolute inset-0 w-full h-full">
-                    <source media="(min-width: 768px)" srcSet={blogHeroBg} type="image/webp" />
+                    <source media="(min-width: 768px)" srcSet={storeHeroBg} type="image/webp" />
                     <img
-                        src={blogHeroBg}
-                        alt="Alquimia botánica"
-                        className="w-full h-full object-cover block rounded-2xl md:rounded-3xl"
+                        src={storeHeroBg}
+                        alt="Botica"
+                        className="w-full h-full object-cover block rounded-2xl md:rounded-3xl "
                         loading="eager"
                         fetchPriority="high"
                         decoding="async"
@@ -37,7 +35,7 @@ export function ArticleSearchHeader() {
                     {/* Etiqueta Superior */}
                     <motion.div variants={cascadeText} className="flex justify-left items-center w-full border-b border-light-1/20 pb-4">
                         <span className="uppercase tracking-[0.2em] text-light-1 text-body-s">
-                            - El Santuario Digital
+                            - Botánica Sagrada
                         </span>
                     </motion.div>
 
@@ -48,16 +46,16 @@ export function ArticleSearchHeader() {
 
                             <div>
                                 <motion.h1 variants={cascadeText} className="text-title-2 md:text-title-1 font-semibold text-light-1 leading-tight drop-shadow-md">
-                                    Alquimia y Sabiduría
+                                    Nuestras Fórmulas
                                 </motion.h1>
                                 <motion.p variants={cascadeText} className="mt-4 text-body-s md:text-body-l text-light-1/90 font-light drop-shadow-md">
-                                    Explora lecturas, rituales y reflexiones sobre la botánica sagrada para armonizar tu día a día.
+                                    Encuentra tu aliado botánico. Alquimias diseñadas para reconectar tu cuerpo, mente y espíritu.
                                 </motion.p>
                             </div>
 
                             {/* BARRA DE BÚSQUEDA */}
                             <motion.div variants={fadeUp} className="w-full relative">
-                                <TypeAheadSearch variant="hero" context="blog" placeholder="Buscar tema o intención..." />
+                                <TypeAheadSearch variant="hero" context="collection" placeholder="¿Qué alquimia buscas hoy?" />
                             </motion.div>
                         </div>
 
