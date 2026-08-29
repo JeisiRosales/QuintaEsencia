@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
-import { ArticleDetailPage } from '@/features/blog/pages/ArticleDetailPage'
+import ArticleDetailPage from '@/features/blog/pages/ArticleDetailPage'
 import { getArticleBySlug } from '@/api/articles' // Ajusta la ruta a tu endpoint de lectura por slug
 
 export const Route = createFileRoute('/blog/$slug')({

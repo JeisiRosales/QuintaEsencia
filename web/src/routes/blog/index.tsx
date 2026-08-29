@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { BlogPage } from '@/features/blog/pages/BlogPage'
+import BlogPage from '@/features/blog/pages/BlogPage'
 import { getPaginatedArticles, getAllIntentions } from '@/api/articles'
 
 type ArticulosSearch = {

@@ -1,15 +1,18 @@
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
+import { SkeletonPage } from '@/components/ui/Skeleton'
 import "./index.css";
 
-// Set up a Router instance
 const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
+  // Configuración global de carga:
+  defaultPendingComponent: SkeletonPage,
+  defaultPendingMs: 0,
+  defaultPendingMinMs: 400,
 })
 
-// Register things for typesafety
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router

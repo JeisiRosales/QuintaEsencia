@@ -21,7 +21,7 @@ interface CollectionPageProps {
     initialCategory?: string;
 }
 
-export function CollectionPage({
+export default function CollectionPage({
     initialProducts,
     intentions,
     categories,

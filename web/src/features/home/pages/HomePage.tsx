@@ -12,7 +12,7 @@ const StepsSection = lazy(() => import('../components/StepsSection').then(m => (
 const SoulMessages = lazy(() => import('../components/SoulMessages').then(m => ({ default: m.SoulMessages })))
 const RecommendedReading = lazy(() => import('../components/RecommendedReading').then(m => ({ default: m.RecommendedReading })))
 
-export function HomePage() {
+export default function HomePage() {
     return (
         <main className="flex flex-col min-h-screen w-full">
             <HeroBanner />

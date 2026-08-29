@@ -1,6 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { HelpCenterPage } from '@/features/ayuda/pages/HelpCenterPage';
+import { createFileRoute, lazyRouteComponent } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/ayuda')({
-  component: HelpCenterPage,
+  component: lazyRouteComponent(() => import('@/features/ayuda/pages/HelpCenterPage')),
 })

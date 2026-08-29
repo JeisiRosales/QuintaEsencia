@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { CollectionPage } from '@/features/colection/pages/CollectionPage'
+import CollectionPage from '@/features/colection/pages/CollectionPage'
 import { getProducts } from '@/api/products'
 import { getAllCategories, getAllIntentions } from '@/api/products'
 

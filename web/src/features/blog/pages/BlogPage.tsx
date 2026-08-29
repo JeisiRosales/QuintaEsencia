@@ -17,7 +17,12 @@ interface BlogPageProps {
     initialIntention?: string;
 }
 
-export function BlogPage({ initialArticles, intentions, initialQuery, initialIntention }: BlogPageProps) {
+export default function BlogPage({
+    initialArticles,
+    intentions,
+    initialQuery,
+    initialIntention
+}: BlogPageProps) {
     const { fadeUp } = useGlobalAnimations();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 

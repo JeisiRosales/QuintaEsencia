@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
-import { ProductDetailPage } from '@/features/colection/pages/ProductDetailPage'
+import ProductDetailPage from '@/features/colection/pages/ProductDetailPage'
 import { getProductBySlug } from '@/api/products'
 
 export const Route = createFileRoute('/coleccion/$slug')({

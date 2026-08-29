@@ -13,7 +13,7 @@ interface ArticleDetailPageProps {
     article: Article;
 }
 
-export function ArticleDetailPage({ article }: ArticleDetailPageProps) {
+export default function ArticleDetailPage({ article }: ArticleDetailPageProps) {
     const { fadeUp } = useGlobalAnimations();
     const { isVisible } = useNavbarState();
     const mainImgDesktop = urlFor(article.mainImage).width(1200).height(675).format('webp').url();

@@ -7,7 +7,11 @@ import { RelatedArticles } from '../components/detail/RelatedArticles';
 import type { Product } from '@/types/product';
 import { Breadcrumbs } from '@/components/ui/BreadCrumbs';
 
-export function ProductDetailPage({ product }: { product: Product }) {
+export default function ProductDetailPage({
+    product
+}: {
+    product: Product
+}) {
     const detailState = useProductDetail(product);
 
     if (!product) return <div className="min-h-screen flex items-center justify-center text-dark-1">Cargando alquimia...</div>;
