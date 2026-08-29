@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 
 const variants = {
     dark: "border-dark-3 text-dark-3 hover:bg-dark-1 hover:text-light-1",
-    darkFill: "border-dark-3 text-light-1 bg-dark-3 hover:bg-light-1 hover:text-dark-3",
+    darkFill: "border-dark-3 text-light-1 bg-dark-1 hover:bg-light-1 hover:text-dark-3",
     light: "border-light-1 text-light-1 hover:bg-light-1 hover:text-dark-1",
     lightFill: "border-light-1 text-light-1 bg-light-1/30 hover:bg-light-1/10",
     gold: "border-gold text-gold hover:bg-gold hover:text-light-1",
