@@ -49,7 +49,7 @@ export function TheCreator() {
                             className="w-full h-full object-cover block"
                             fetchPriority="high"
                             decoding="async"
-                            loading="eager"
+                            loading="lazy"
                         />
                     </picture>
                 </motion.div>

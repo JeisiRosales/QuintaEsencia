@@ -45,7 +45,7 @@ export function RecommendedProductsSidebar({
                                             className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-300"
                                             fetchPriority="high"
                                             decoding="async"
-                                            loading="eager"
+                                            loading="lazy"
                                         />
                                     </picture>
                                 </div>

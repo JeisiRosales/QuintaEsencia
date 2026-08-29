@@ -129,7 +129,7 @@ export function StepsSection() {
                             draggable={false}
                             fetchPriority="high"
                             decoding="async"
-                            loading="eager"
+                            loading="lazy"
                             className="w-full h-full object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)] select-none pointer-events-auto"
                         />
                     </div>

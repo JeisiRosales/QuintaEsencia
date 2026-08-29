@@ -33,7 +33,7 @@ export function TheMission() {
                         alt="Baño relajante de botánica sagrada"
                         fetchPriority="high"
                         decoding="async"
-                        loading="eager"
+                        loading="lazy"
                         className="w-4/5 md:w-[110%] h-auto drop-shadow-2xl md:-ml-10"
                     />
                 </motion.div>

@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Article } from '@/types';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useItemSearch } from '@/hooks/useItemsSearch';
 import { ArticleSearchHeader } from '../components/ArticleSearchHeader';
-import { ArticleCardDesktop } from '../components/ArticleCardDesktop';
-import { ArticleCardMobile } from '../components/ArticleCardMobile';
+import { ArticleCard } from '../components/ArticleCard';
 import { useGlobalAnimations } from '@/hooks/useGlobalAnimations';
 import { Button } from '@/components/ui/Button';
 import { FilterDrawer, type FilterGroup } from '@/components/shared/FilterDrawer';
@@ -20,7 +18,6 @@ interface BlogPageProps {
 }
 
 export function BlogPage({ initialArticles, intentions, initialQuery, initialIntention }: BlogPageProps) {
-    const isMobile = useMediaQuery('(max-width: 767px)');
     const { fadeUp } = useGlobalAnimations();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -105,17 +102,10 @@ export function BlogPage({ initialArticles, intentions, initialQuery, initialInt
                         variants={fadeUp}
                         initial="hidden"
                         animate="show"
-                        className={`mt-8 ${isMobile
-                            ? "flex flex-col gap-4"
-                            : "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8"
-                            }`}
+                        className="mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8"
                     >
                         {filteredArticles.map((article) => (
-                            isMobile ? (
-                                <ArticleCardMobile key={article._id} article={article} />
-                            ) : (
-                                <ArticleCardDesktop key={article._id} article={article} />
-                            )
+                            <ArticleCard key={article._id} article={article} />
                         ))}
                     </motion.div>
                 ) : (

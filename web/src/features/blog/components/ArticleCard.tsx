@@ -9,7 +9,7 @@ interface ArticleCardDesktopProps {
     article: Article;
 }
 
-export function ArticleCardDesktop({ article }: ArticleCardDesktopProps) {
+export function ArticleCard({ article }: ArticleCardDesktopProps) {
     const { fadeUp } = useGlobalAnimations();
 
     const imageUrlDesktop = urlFor(article.mainImage).width(700).height(400).format('webp').url();

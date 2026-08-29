@@ -27,7 +27,7 @@ export function AboutSection() {
                                 alt="Manos sosteniendo sales y alquimia botánica"
                                 fetchPriority="high"
                                 decoding="async"
-                                loading='eager'
+                                loading='lazy'
                                 className="w-full h-full lg:w-full lg:h-auto lg:max-w-full object-cover [object-position:88%_50%] lg:object-contain block"
                             />
                         </div>

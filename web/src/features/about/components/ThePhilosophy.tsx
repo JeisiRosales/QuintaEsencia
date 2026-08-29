@@ -18,7 +18,7 @@ export function ThePhilosophy() {
                         className="w-full h-full object-cover backdrop-blur-sm"
                         fetchPriority="high"
                         decoding="async"
-                        loading="eager"
+                        loading="lazy"
                     />
                 </picture>
             </div>

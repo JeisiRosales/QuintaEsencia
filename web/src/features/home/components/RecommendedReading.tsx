@@ -55,7 +55,7 @@ export function RecommendedReading() {
                                                     alt={article.title}
                                                     fetchPriority="high"
                                                     decoding="async"
-                                                    loading="eager"
+                                                    loading="lazy"
                                                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                                                 />
                                             )}
