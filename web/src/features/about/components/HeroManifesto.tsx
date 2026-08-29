@@ -7,19 +7,16 @@ export function HeroManifesto() {
 
     return (
         <section className="w-full mt-20 px-4 md:px-8">
-            <header className="relative w-full h-[75vh] min-h-[520px] max-h-[750px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
-                {/* Imagen de fondo */}
-                <picture className="absolute inset-0 w-full h-full">
-                    <source media="(min-width: 768px)" srcSet={heroBg} type="image/webp" />
-                    <img
-                        src={heroBg}
-                        alt="Alquimia botánica"
-                        className="w-full h-full object-cover block"
-                        loading="eager"
-                        fetchPriority="high"
-                        decoding="async"
-                    />
-                </picture>
+            <header
+                className="relative w-full h-[75vh] min-h-[520px] max-h-[750px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl"
+                aria-label="Banner principal de la página de inicio"
+                style={{
+                    backgroundImage: `url(${heroBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                }}
+            >
 
                 {/* Overlay oscuro */}
                 <div className="absolute inset-0 bg-dark-1/30 transition-opacity duration-500" />

@@ -11,19 +11,16 @@ export function RitualHero() {
 
     return (
         <section className="w-full mt-20 px-4 md:px-8">
-            <header className="relative w-full h-[75vh] min-h-[520px] max-h-[750px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
-                {/* Imagen de fondo */}
-                <picture className="absolute inset-0 w-full h-full">
-                    <source media="(min-width: 768px)" srcSet={heroBanner} type="image/webp" />
-                    <img
-                        src={heroBanner}
-                        alt="Ritual de Quinta Esencia"
-                        className="w-full h-full object-cover block"
-                        loading="eager"
-                        fetchPriority="high"
-                        decoding="async"
-                    />
-                </picture>
+            <header
+                className="relative w-full h-[75vh] min-h-[520px] max-h-[750px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl"
+                aria-label="Banner principal de la página de inicio"
+                style={{
+                    backgroundImage: `url(${heroBanner})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                }}
+            >
 
                 {/* Overlay oscuro */}
                 <div className="absolute inset-0 bg-gradient-to-b from-dark-1/40 via-dark-1/20 to-dark-1/60 transition-opacity duration-500" />
