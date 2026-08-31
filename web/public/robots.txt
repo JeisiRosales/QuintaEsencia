@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://quintaesencia.pages.dev/sitemap.xml
